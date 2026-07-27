@@ -1,0 +1,2533 @@
+/**
+ * Pasta & Sabor - Customizações de Identidade Visual
+ *
+ * Remove pretos do template Kababi e substitui por tons da marca.
+ * NÃO altera estrutura, layout ou posicionamento.
+ */
+
+/* ============================================
+   VARIÁVEIS CSS - PALETA DA MARCA
+   ============================================ */
+:root {
+    /* Tons escuros da marca (substitutos do preto) */
+    --marca-escuro: #3d2e28;           /* Marrom escuro para header/footer */
+    --marca-overlay: rgba(61, 46, 40, 0.45); /* Overlay marrom suave para hero */
+    --marca-overlay-zero: rgba(61, 46, 40, 0); /* Fim do degradê */
+
+    /* Tons médios (caso precise ajustar seções) */
+    --marca-medio-escuro: #4a3730;     /* Tom intermediário */
+    --marca-medio: #6b504a;            /* Marrom médio */
+
+    /* Cores do header */
+    --header-bg: #fdf5e8;              /* Creme claro da marca */
+    --header-text-active: #3d2e28;     /* Marrom da marca (ativo/hover) */
+    --header-text-inactive: #3d2e28;   /* Marrom da marca para itens não ativos */
+    --topbar-bg: #fdf5e8;              /* Mesmo creme do header para continuidade */
+}
+
+/* ============================================
+   HEADER — INTER + ALINHAMENTO + FUNDO BEGE
+   ============================================ */
+
+/* Fonte Inter em todo o header */
+#site-header,
+#site-header * {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Top bar */
+.top-bar,
+.top-bar-inner-page {
+    background-color: var(--topbar-bg) !important;
+}
+
+/* Header fixo */
+body.header-fixed #site-header,
+body.header-fixed2 #site-header {
+    background-color: var(--header-bg) !important;
+}
+
+/* Dimensões e fundo */
+#site-header {
+    background-color: var(--header-bg) !important;
+    padding: 0 !important;
+    height: 90px !important;
+    min-height: 90px !important;
+    max-height: 90px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+}
+
+#site-header-inner {
+    background-color: var(--header-bg) !important;
+    height: 100% !important;
+    padding: 0 40px !important;
+}
+
+#site-header.site-header-inner-page {
+    background-color: var(--header-bg) !important;
+    height: 90px !important;
+}
+
+/* wrap-inner: grid 3 colunas — logo | nav (centro exato) | actions */
+#site-header .wrap-inner {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    height: 100% !important;
+    gap: 0 !important;
+}
+
+/* Esconder botão mobile — múltiplos seletores para garantir especificidade */
+.mobile-button,
+#site-header .mobile-button,
+.wrap-inner .mobile-button,
+#site-header-inner .mobile-button {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Logo — coluna 1, alinhada à esquerda */
+#site-logo,
+#site-header #site-logo,
+header #site-logo {
+    grid-column: 1 !important;
+    justify-self: start !important;
+    align-self: center !important;
+    line-height: normal !important;
+}
+
+#site-logo img,
+#site-logo a img,
+#site-header #site-logo img,
+header #site-logo img,
+.logo img {
+    height: 76px !important;
+    width: auto !important;
+    max-width: 220px !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+/* Nav — coluna 2, centro geométrico da página */
+#main-nav {
+    grid-column: 2 !important;
+    justify-self: center !important;
+    align-self: center !important;
+    display: flex !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+
+#main-nav > ul {
+    display: flex !important;
+    align-items: center !important;
+    gap: 36px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Links do menu */
+#main-nav > ul > li > a {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
+    color: var(--header-text-inactive) !important;
+    text-decoration: none !important;
+    transition: color 0.25s ease !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+#main-nav > ul > li > a:hover,
+#main-nav > ul > li.current-menu-item > a {
+    color: var(--header-text-active) !important;
+    background: rgba(179, 146, 95, 0.16) !important;
+    border-radius: 6px !important;
+    padding: 5px 14px !important;
+}
+
+#main-nav > ul > li > a {
+    border-radius: 6px !important;
+    padding: 5px 14px !important;
+    transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+/* Actions — coluna 3, alinhada à direita */
+.header-actions {
+    grid-column: 3 !important;
+    justify-self: end !important;
+    align-self: center !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+}
+
+/* Telefone */
+.header-phone {
+    display: flex;
+    align-items: center;
+}
+
+.header-phone span {
+    font-family: 'Inter', sans-serif;
+    color: var(--header-text-active);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Login */
+.header-login a {
+    font-family: 'Inter', sans-serif;
+    color: var(--header-text-active);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+.header-login a:hover {
+    color: var(--header-text-inactive);
+}
+
+.header-login svg { flex-shrink: 0; }
+
+/* Carrinho */
+.header-cart { position: relative; }
+
+.header-cart a {
+    position: relative;
+    color: var(--header-text-active);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.25s ease;
+}
+
+.header-cart a:hover { color: var(--header-text-inactive); }
+.header-cart svg { flex-shrink: 0; }
+
+/* Badge — definição aqui; a definitiva está na seção de carrinho abaixo */
+
+/* ============================================
+   HERO / SLIDER - OVERLAY COM TOM DA MARCA
+   ============================================ */
+
+/* Hero principal — começa abaixo do header fixo */
+.page-title {
+    background: linear-gradient(150deg, var(--marca-overlay) 33%, var(--marca-overlay-zero) 77%),
+                url("../img/slider/img_bg_slider_home01.jpg") no-repeat fixed center center !important;
+    position: relative;
+    overflow: hidden;
+    margin-top: 90px !important; /* empurra o hero para baixo do header */
+}
+
+/* Vídeo de fundo da hero */
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Overlay escuro sobre o vídeo (entre vídeo e conteúdo) */
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(150deg, var(--marca-overlay) 33%, var(--marca-overlay-zero) 77%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Garantir que o conteúdo da hero fique sobre o vídeo e overlay */
+.page-title .slider {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   FOOTER ESTILO YUMMYE — INTER + TIPOGRAFIA CINZA
+   ============================================ */
+
+.ps-footer-yummye {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--header-bg);
+    padding: 70px 0 0 0;
+    position: relative;
+}
+
+/* Grid de 4 colunas */
+.ps-footer-cols {
+    display: flex;
+    gap: 50px;
+    padding: 0 60px 60px 60px;
+    flex-wrap: wrap;
+}
+
+.ps-fcol {
+    flex: 1;
+    min-width: 180px;
+}
+
+.ps-fcol-brand {
+    flex: 1.5;
+}
+
+/* Logo */
+.ps-footer-logo-link img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 30px;
+    display: block;
+}
+
+/* Itens de contato (ícone + texto) */
+.ps-footer-contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ps-footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.ps-ficon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #555;
+    font-size: 15px;
+}
+
+.ps-footer-contact-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Cabeçalhos das colunas */
+.ps-footer-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 18px 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Links de navegação */
+.ps-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ps-footer-links li a {
+    font-size: 15px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.ps-footer-links li a:hover {
+    color: #222;
+}
+
+/* Horários */
+.ps-footer-hours {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ps-footer-hours li {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.45;
+    font-family: 'Inter', sans-serif;
+}
+
+.ps-fhour-day {
+    color: #333;
+    font-weight: 600;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+
+/* Ícones sociais */
+.ps-footer-social-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ps-footer-social-icons a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.ps-footer-social-icons a:hover {
+    background-color: #333;
+    border-color: #333;
+    color: var(--header-bg);
+}
+
+/* Bottom bar — sem parte clara abaixo */
+.ps-footer-bottom {
+    background-color: rgba(61, 46, 40, 0.06);
+    border-top: 1px solid rgba(61, 46, 40, 0.08);
+    padding: 16px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 0;
+}
+
+#footer.ps-footer-yummye {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.ps-footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Botão scroll-to-top — círculo simples, seta branca */
+.ps-scroll-top {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--marca-escuro);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.ps-scroll-top:hover {
+    background-color: #2a1f1b;
+    color: #ffffff;
+    transform: translateY(-55%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ps-footer-cols {
+        flex-direction: column;
+        padding: 0 24px 40px 24px;
+        gap: 32px;
+    }
+    .ps-footer-bottom {
+        padding: 16px 60px 16px 24px;
+    }
+}
+
+/* ============================================
+   SEÇÕES COM FUNDO PRETO → TOM DA MARCA
+   ============================================ */
+
+/* Seções diversas que usavam #090C0F e #0E1317 */
+
+/* Top bar backgrounds - style.css */
+.top-bar.top-bar-style2 {
+    background-color: var(--marca-escuro) !important;
+}
+
+.top-bar.top-bar-style3 {
+    background-color: var(--marca-escuro) !important;
+}
+
+.top-bar .top-bar-border {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+/* Seções shortcodes.css - substituindo #05080B, #090C0F, #0E1317 */
+
+/* Heading style dark */
+.heading-style1.heading-dark {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-bg-style02 {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+.section-bg-style03 {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+.section-iconbox {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-menu-item {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+.section-book-table {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-testimonial-home1 {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-brand {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-Our-Facilities {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-open-time-2 {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+.section-book-table-style2 {
+    background-color: var(--marca-escuro) !important;
+}
+
+.section-gallery-our-shop {
+    background-color: var(--marca-medio-escuro) !important;
+}
+
+.section-products-review {
+    background-color: var(--marca-escuro) !important;
+}
+
+/* Bottom bar */
+#bottom {
+    background-color: var(--marca-escuro) !important;
+}
+
+/* ============================================
+   ELEMENTOS ESPECÍFICOS COM FUNDOS ESCUROS
+   ============================================ */
+
+/* Modais, overlays e elementos com fundo preto puro */
+.modal-backdrop,
+.overlay-dark {
+    background-color: var(--marca-escuro) !important;
+}
+
+/* Elementos que usavam rgba(0,0,0,x) */
+.dark-overlay {
+    background-color: var(--marca-overlay) !important;
+}
+
+/* ============================================
+   ELEMENTOS DO CARRINHO E E-COMMERCE
+   ============================================ */
+
+/* Header contact items - garantir alinhamento */
+.header-contact {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.header-contact a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.header-contact a:hover {
+    color: #c8a96a !important;
+}
+
+/* Badge do carrinho */
+.header-cart .cart-badge {
+    position: absolute !important;
+    top: -6px !important;
+    right: -8px !important;
+    background-color: #b3925f !important;
+    color: #fff !important;
+    border: 2px solid var(--header-bg) !important;
+    border-radius: 999px !important;
+    min-width: 19px !important;
+    width: auto !important;
+    height: 19px !important;
+    padding: 0 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    font-family: 'Inter', sans-serif !important;
+    box-shadow: none !important;
+}
+
+/* Animação de adicionar ao carrinho */
+.cart-badge.pulse {
+    animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* ============================================
+   DRAWER DO CARRINHO
+   ============================================ */
+
+.ps-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.ps-cart-drawer.open {
+    right: 0;
+}
+
+.ps-cart-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--marca-escuro);
+    color: white;
+}
+
+.ps-cart-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ps-cart-close {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ps-cart-close:hover {
+    color: #c8a96a;
+}
+
+.ps-cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.ps-cart-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+}
+
+.ps-cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ps-cart-item:last-child {
+    border-bottom: none;
+}
+
+.ps-cart-item-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.ps-cart-item-price {
+    margin: 0;
+    color: #c8a96a;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ps-cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ps-qty-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.ps-qty-btn:hover {
+    background: #c8a96a;
+    color: white;
+    border-color: #c8a96a;
+}
+
+.ps-qty-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ps-remove-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.ps-remove-btn:hover {
+    opacity: 1;
+}
+
+.ps-cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #f9f9f9;
+}
+
+.ps-cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.ps-cart-total strong {
+    color: #333;
+}
+
+#ps-cart-total-value {
+    color: #c8a96a;
+    font-weight: bold;
+}
+
+.ps-cart-checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #c8a96a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.ps-cart-checkout-btn:hover {
+    background: #b8996a;
+    color: white;
+}
+
+/* ============================================
+   NOTIFICAÇÃO DE ITEM ADICIONADO
+   ============================================ */
+
+.ps-cart-notification {
+    position: fixed;
+    top: 100px;
+    right: -300px;
+    background: #4caf50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    transition: right 0.3s ease;
+    font-weight: 600;
+}
+
+.ps-cart-notification.show {
+    right: 20px;
+}
+
+/* ============================================
+   RESPONSIVO - DRAWER
+   ============================================ */
+
+@media (max-width: 768px) {
+    .ps-cart-drawer {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+/* ============================================
+   PÁGINA DO CARRINHO (cart.html)
+   ============================================ */
+
+.cart-page {
+    padding: 60px 0;
+}
+
+/* Tabela de Produtos */
+.cart-table-wrap {
+    margin-bottom: 40px;
+}
+
+.ps-cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.ps-cart-table thead {
+    background: #f5f5f5;
+}
+
+.ps-cart-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+}
+
+.ps-cart-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.ps-cart-table .product-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.ps-cart-table .product-price,
+.ps-cart-table .product-subtotal {
+    color: #c8a96a;
+    font-weight: 600;
+}
+
+/* Controles de Quantidade */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.qty-btn:hover {
+    background: #c8a96a;
+    color: white;
+    border-color: #c8a96a;
+}
+
+.qty-input {
+    width: 60px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.remove-btn:hover {
+    color: #e74c3c;
+}
+
+/* Linha de Total */
+.cart-total-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.cart-total-label {
+    font-size: 18px;
+}
+
+.cart-total-value {
+    font-size: 24px;
+    color: #c8a96a;
+}
+
+/* Formulário de Checkout */
+.checkout-form-wrap {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.checkout-form-wrap fieldset {
+    margin-bottom: 20px;
+}
+
+.checkout-form-wrap label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.checkout-form-wrap input[type="text"],
+.checkout-form-wrap input[type="tel"],
+.checkout-form-wrap select,
+.checkout-form-wrap textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+.checkout-form-wrap input:focus,
+.checkout-form-wrap select:focus,
+.checkout-form-wrap textarea:focus {
+    outline: none;
+    border-color: #c8a96a;
+}
+
+.checkout-form-wrap textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .ps-cart-table {
+        font-size: 14px;
+    }
+
+    .ps-cart-table th,
+    .ps-cart-table td {
+        padding: 10px 8px;
+    }
+
+    .qty-controls {
+        gap: 5px;
+    }
+
+    .qty-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+
+    .qty-input {
+        width: 50px;
+    }
+
+    .cart-total-row {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .checkout-form-wrap {
+        padding: 20px;
+    }
+}
+
+/* ============================================
+   INNER PAGE HERO — margin-top e breadcrumb
+   ============================================ */
+
+/* Hero interna */
+.page-title.page-title-inner {
+    margin-top: 45px !important; /* 45px do top-bar já empurram; header fixo tem 90px no total */
+    position: relative !important;
+    z-index: 500 !important; /* acima da seção seguinte, para o breadcrumb não ser cortado */
+    overflow: visible !important; /* o overflow:hidden do .page-title cortava o breadcrumb */
+}
+
+/* Imagens de fundo por página — com parallax leve (background fixo) */
+.page-title.page-title-inner.ps-hero-historia {
+    background: url(../nossa-historia.png) no-repeat fixed center center !important;
+    background-size: cover !important;
+}
+.page-title.page-title-inner.ps-hero-loja {
+    background: url(../loja.png) no-repeat fixed center center !important;
+    background-size: cover !important;
+}
+.page-title.page-title-inner.ps-hero-contato {
+    background: url(../contato.png) no-repeat fixed center center !important;
+    background-size: cover !important;
+}
+.page-title.page-title-inner.ps-hero-detalhes {
+    background: url(../detalhes-produto.jpg) no-repeat fixed center center !important;
+    background-size: cover !important;
+}
+.page-title.page-title-inner.ps-hero-carrinho {
+    background: url(../carrinho.jpg) no-repeat fixed center center !important;
+    background-size: cover !important;
+}
+.page-title.page-title-inner.ps-hero-entrar {
+    background: url(../entrar.jpg) no-repeat scroll center 72% !important;
+    background-size: cover !important;
+}
+
+/* Parallax também nas heros internas sem imagem própria */
+.page-title.page-title-inner {
+    background-attachment: fixed !important;
+}
+/* Hero do login/cadastro: enquadramento na massa (sem parallax) */
+.page-title.page-title-inner.ps-hero-entrar {
+    background-attachment: scroll !important;
+}
+
+/* Mobile: background fixo não funciona bem (iOS) — volta ao normal */
+@media (max-width: 991px) {
+    .page-title.page-title-inner,
+    .page-title.page-title-inner.ps-hero-historia,
+    .page-title.page-title-inner.ps-hero-loja,
+    .page-title.page-title-inner.ps-hero-contato {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Overlay mais suave para as fotos da marca */
+.ps-hero-historia .overlay-pagetitle,
+.ps-hero-loja .overlay-pagetitle,
+.ps-hero-contato .overlay-pagetitle,
+.ps-hero-detalhes .overlay-pagetitle,
+.ps-hero-carrinho .overlay-pagetitle,
+.ps-hero-entrar .overlay-pagetitle {
+    background-color: rgba(9, 12, 17, 0.45) !important;
+}
+
+/* Breadcrumb: metade no hero, metade na seção de baixo */
+.page-title-inner .breadcrumbs.ps-breadcrumb-straddle {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 120 !important;
+    transform: translateY(50%) !important;
+    margin: 0 !important;
+}
+.ps-breadcrumb-straddle ul {
+    box-shadow: 0 10px 30px rgba(61, 46, 40, 0.15);
+}
+
+/* Espaço para o breadcrumb não sobrepor o conteúdo abaixo */
+.page-title.page-title-inner + section,
+.page-title.page-title-inner + .tf-section,
+.page-title-inner ~ section:first-of-type {
+    padding-top: 80px !important;
+}
+
+/* ============================================
+   COUNTER ABOUT — igual ao counter do index
+   ============================================ */
+
+/* Remove imagem de fundo e overlay escuro */
+.tf-section.counter-chefs-about {
+    background: none !important;
+    background-color: #f9f6f0 !important;
+    padding: 80px 0 67px 0 !important;
+}
+.counter-chefs-about .overlay-inner {
+    display: none !important;
+}
+
+/* Texto escuro (igual ao index) */
+.counter-chefs-about .wrap-counter .box-countter-chefs .countter-box .heading,
+.counter-chefs-about .countter-box .sub-number,
+.counter-chefs-about .countter-box .number {
+    color: #3d2e28 !important;
+}
+
+/* Remove os números */
+.counter-chefs-about .countter-box .number,
+.counter-chefs-about .countter-box .sub-number {
+    display: none !important;
+}
+
+/* ============================================
+   ABOUT — WATERMARK TAMANHO + CENTRALIZAÇÃO
+   ============================================ */
+
+/* Título da hero interna — centralizado e maior */
+.page-title-inner .page-title-heading {
+    text-align: center !important;
+    width: 100% !important;
+}
+.page-title-inner .page-title-heading .heading {
+    font-size: 96px !important;
+    line-height: 1.05 !important;
+    text-align: center !important;
+    color: #fff !important;
+    white-space: nowrap !important;
+}
+
+/* Watermark "NOSSA HISTÓRIA" — centralizado na página */
+.wrap-about-us-style4 .tf-heading-bg {
+    position: relative !important;
+    height: 0 !important;
+}
+.wrap-about-us-style4 .tf-heading-bg .heading-bg-style02 {
+    font-size: 100px !important;
+    line-height: 110px !important;
+    letter-spacing: 6px !important;
+    margin: 0 !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: -20px !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    text-align: center !important;
+}
+
+/* ============================================
+   ABOUT — "BEM-VINDO" CENTRALIZADO + CÍRCULO SVG
+   ============================================ */
+
+/* Imagem da seção About — altura controlada */
+.tf-img-about {
+    overflow: hidden;
+}
+
+.tf-img-about img {
+    max-height: 420px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+}
+
+/* Centralizar watermarks de seção */
+.wrap-about-us .tf-heading-bg .heading-bg-style,
+.wrap-Depoimentoss .tf-heading-bg .heading-bg-style,
+.tf-blog .tf-heading-bg .heading-bg-style,
+.wrap-gallery .tf-heading-bg .heading-bg-style {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    width: auto !important;
+}
+
+/* Garantir que o div do círculo SVG herde posicionamento da classe iconbg_about */
+.wrap-about-us .iconbg_about {
+    position: absolute;
+    right: 12%;
+    top: 42.2%;
+    line-height: 0;
+}
+
+/* ============================================
+   SEÇÕES PRINCIPAIS - FUNDO BRANCO / BEGE CLARO
+   ============================================ */
+
+/* Corpo das seções: branco puro */
+.tf-section.wrap-about-us,
+.tf-section.wrap-gallery,
+.tf-section.tf-blog {
+    background-color: #ffffff !important;
+}
+
+/* Seção de depoimentos: bege bem claro (mantém bg-style2) */
+.tf-section.wrap-Depoimentoss {
+    background-color: #faf7f2 !important;
+}
+
+/* Counter section: bege claro */
+.counter-chefs .wrap-counter {
+    background-color: #f5f0e8 !important;
+}
+
+/* ============================================
+   PADDING EXCESSIVO NO ABOUT-US
+   ============================================ */
+
+/* Reduzir o padding-top absurdo de 627px para algo razoável */
+.tf-section.wrap-about-us {
+    padding: 100px 0 80px 0 !important;
+}
+
+/* ============================================
+   GALERIA — GRID SEM DISTORÇÃO + HEADING CENTRALIZADO
+   ============================================ */
+
+/* Altura fixa para cada linha do grid */
+.wrap-gallery .row > .col-box {
+    height: 420px;
+}
+
+/* Espaço suficiente para o botão não sobrepor a próxima seção */
+.tf-section.wrap-gallery {
+    padding-bottom: 160px !important;
+    overflow: visible !important;
+}
+
+/* Imagem ocupa todo o espaço sem distorcer */
+.wrap-gallery .gallery-box,
+.wrap-gallery .hover-effect,
+.wrap-gallery .hover-effect .image {
+    height: 100% !important;
+}
+
+.wrap-gallery .hover-effect .image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    min-height: unset !important;
+}
+
+/* ============================================
+   EVENTOS — GRID DE CARTÕES
+   ============================================ */
+
+.ps-events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 0 0 60px 0;
+}
+
+.ps-event-card {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.ps-event-img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.ps-event-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.ps-event-card:hover .ps-event-img img {
+    transform: scale(1.04);
+}
+
+.ps-event-caption {
+    padding: 18px 4px 8px 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.ps-event-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2e2e2e;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+}
+
+.ps-event-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #888;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .ps-events-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   BLOG - REMOVER GRAYSCALE PADRÃO DAS IMAGENS
+   ============================================ */
+
+/* Blog images apareciam cinza por padrão */
+.post .featured-post img,
+.tf-section.tf-blog .featured-post img {
+    -webkit-filter: none !important;
+    -ms-filter: none !important;
+    -moz-filter: none !important;
+    filter: none !important;
+}
+
+/* ============================================
+   ABOUT PAGE — IMAGEM + PAINEL DE VALORES
+   ============================================ */
+
+/* Container direito */
+.ps-about-right-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 70px; /* espaço para o card branco que "vaza" para baixo */
+}
+
+/* Imagem grande */
+.ps-about-img-box {
+    overflow: hidden;
+    height: 460px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(61, 46, 40, 0.10);
+}
+.ps-about-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Card bege arredondado sobrepondo a base direita da imagem */
+.ps-about-values-box {
+    background-color: var(--header-bg);
+    border-radius: 20px;
+    padding: 28px 32px 30px;
+    margin-top: -150px;
+    margin-left: 40%;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 16px 40px rgba(61, 46, 40, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Título dos valores */
+.ps-values-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--marca-escuro);
+    margin: 0 0 6px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(61, 46, 40, 0.15);
+}
+
+/* Lista dos valores — coluna única com bullets */
+.ps-values-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.ps-values-list li {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--marca-escuro);
+    padding: 7px 0 7px 30px;
+    position: relative;
+    font-weight: 500;
+    margin: 0;
+    border-bottom: 1px solid rgba(61, 46, 40, 0.08);
+}
+.ps-values-list li:last-child {
+    border-bottom: none;
+}
+.ps-values-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.55);
+    color: var(--marca-escuro);
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Card branco — clientes satisfeitos (vaza para baixo do card bege) */
+.ps-clients-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 14px 26px 14px 14px;
+    box-shadow: 0 12px 32px rgba(61, 46, 40, 0.20);
+    width: fit-content;
+    margin: 26px -12px -70px auto;
+    position: relative;
+    z-index: 3;
+}
+.ps-clients-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background-color: #a97c50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.ps-clients-icon i {
+    font-size: 24px;
+    color: #fff;
+}
+.ps-clients-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+.ps-clients-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--marca-escuro);
+    letter-spacing: -0.5px;
+}
+.ps-clients-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(61, 46, 40, 0.75);
+}
+
+/* Responsivo — telas menores */
+@media (max-width: 767px) {
+    .ps-about-img-box {
+        height: 320px;
+    }
+    .ps-about-values-box {
+        margin-left: 16px;
+        margin-top: -80px;
+        padding: 24px 24px 28px;
+    }
+    .ps-clients-card {
+        margin: 20px auto -60px;
+    }
+}
+
+/* ============================================
+   LOJA — CARDS DE PRODUTO
+   ============================================ */
+
+/* Select de ordenação */
+.ps-sort-select {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+    background: #fff;
+    border: 1.5px solid rgba(61, 46, 40, 0.2);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    outline: none;
+}
+.ps-sort-select:hover,
+.ps-sort-select:focus {
+    border-color: #b3925f;
+}
+
+/* Categorias — link ativo */
+.ps-category-list a.active {
+    background-color: #b3925f !important;
+    color: #fff !important;
+    border-color: #b3925f !important;
+}
+
+/* Banner lateral "Produtos Artesanais" — degradê suave sobre a imagem */
+#sidebar .image {
+    position: relative;
+    overflow: hidden;
+}
+#sidebar .image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+        rgba(61, 46, 40, 0.50) 0%,
+        rgba(61, 46, 40, 0.18) 45%,
+        rgba(61, 46, 40, 0.05) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+#sidebar .image .content {
+    z-index: 2;
+}
+
+/* Subtítulo da loja */
+.ps-shop-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin: 0 0 40px 0;
+}
+
+/* Sem overlay escuro nas imagens dos produtos (hover/active do template) */
+.items-shop .hover-effect::before {
+    display: none !important;
+}
+
+/* Grade uniforme: 3 cards por linha, todos do mesmo tamanho */
+.items-shop {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    overflow: visible !important;
+}
+.items-shop .item-box {
+    width: 100% !important;
+    float: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}
+.items-shop .item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    border: 1px solid rgba(61, 46, 40, 0.10);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.items-shop .item:hover {
+    box-shadow: 0 12px 28px rgba(61, 46, 40, 0.12);
+    transform: translateY(-3px);
+}
+.items-shop .item::after {
+    display: none !important; /* borda quadrada do template */
+}
+/* Imagem sempre com a mesma altura */
+.items-shop .hover-effect,
+.items-shop .hover-effect .image {
+    height: 300px;
+    overflow: hidden;
+}
+.items-shop .hover-effect .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+/* Conteúdo cresce e empurra os botões para a base */
+.items-shop .product-content {
+    flex: 1;
+    padding: 18px 16px 8px !important;
+    text-align: left;
+}
+/* Nome em uma linha só, com reticências se não couber */
+.items-shop .name-product {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    margin: 0 0 4px 0 !important;
+}
+.items-shop .pricing {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px !important;
+    font-weight: 700;
+    color: #8a6d43 !important;
+    margin: 0 !important;
+}
+/* Relacionados: 4 por linha */
+.items-shop-related {
+    grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1199px) {
+    .items-shop-related { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 991px) {
+    .items-shop { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 575px) {
+    .items-shop,
+    .items-shop-related { grid-template-columns: 1fr; }
+}
+
+/* Botões do card: Ver detalhes + Adicionar ao carrinho */
+.ps-card-actions {
+    display: flex;
+    gap: 8px;
+    padding: 14px 16px 18px;
+}
+.ps-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 11px 12px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    border: 1.5px solid #b3925f;
+}
+.ps-btn-details {
+    flex: 0 0 auto;
+}
+.ps-btn-cart {
+    flex: 1;
+}
+.ps-btn-details {
+    background: transparent;
+    color: #8a6d43;
+}
+.ps-btn-details:hover {
+    background: #b3925f;
+    color: #fff;
+}
+.ps-btn-cart {
+    background: #b3925f;
+    color: #fff;
+}
+.ps-btn-cart:hover {
+    background: var(--marca-escuro);
+    border-color: var(--marca-escuro);
+}
+.ps-btn-cart.ps-added {
+    background: #5f7a4e;
+    border-color: #5f7a4e;
+}
+
+/* ============================================
+   DETALHES DO PRODUTO — TIPOGRAFIA INTER
+   ============================================ */
+
+.product-details .name-product,
+.product-details .pricing,
+.product-details .text,
+.product-details .title-details,
+.product-details .tag-category,
+.product-details .tag-category a,
+.product-details .quantity input,
+.product-details .tf-button,
+.wrap-shop-details .name-product,
+.wrap-shop-details .pricing,
+.wrap-shop-details .tf-title,
+.wrap-shop-details .tf-sub-heading {
+    font-family: 'Inter', sans-serif !important;
+}
+.product-details h3.name-product {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+.product-details .pricing {
+    font-weight: 700;
+}
+.product-details .title-details {
+    font-weight: 700;
+}
+
+/* Ilustração de fundo da faixa de diferenciais (home e Nossa História) */
+.counter-chefs .wrap-counter .overlay-counter,
+.counter-chefs-about .overlay-inner {
+    display: block !important;
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../ilustration.png) no-repeat center center !important;
+    background-size: cover !important;
+    opacity: 0.05 !important;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Faixa de diferenciais da Nossa História — ilustração de fundo */
+.tf-section.counter-chefs-about {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+/* fica acima do fundo da seção, mas abaixo do conteúdo */
+.counter-chefs-about .overlay-inner {
+    z-index: 0 !important;
+    background-position: center center !important;
+}
+.counter-chefs-about .container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   LOGIN / CADASTRO
+   ============================================ */
+
+.ps-auth-section {
+    padding: 90px 0 110px !important;
+}
+.ps-auth-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+}
+.ps-auth-wrap.ps-auth-wide { max-width: 620px; }
+
+.ps-auth-card {
+    background: #fff;
+    border: 1px solid rgba(61, 46, 40, 0.10);
+    border-radius: 20px;
+    padding: 44px 44px 40px;
+    box-shadow: 0 16px 44px rgba(61, 46, 40, 0.08);
+}
+
+/* Cabeçalho */
+.ps-auth-head {
+    text-align: center;
+    margin-bottom: 32px;
+}
+.ps-auth-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: #f5efe5;
+    color: #b3925f;
+    font-size: 23px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+.ps-auth-title {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 25px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+    color: var(--marca-escuro) !important;
+    margin: 0 0 6px 0 !important;
+}
+.ps-auth-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(61, 46, 40, 0.6);
+    margin: 0;
+}
+
+/* Campos (reutiliza .ps-field do checkout) */
+.ps-auth-form .ps-field { margin-bottom: 18px; }
+.ps-auth-form .ps-field label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+    margin-bottom: 7px;
+}
+.ps-auth-form .ps-field label span { color: #b3925f; }
+.ps-auth-form .ps-field input {
+    width: 100% !important;
+    display: block !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    color: var(--marca-escuro) !important;
+    background: #fff !important;
+    border: 1.5px solid rgba(61, 46, 40, 0.18) !important;
+    border-radius: 10px !important;
+    padding: 13px 16px !important;
+    margin: 0 !important;
+    height: auto !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease;
+}
+.ps-auth-form .ps-field input:focus {
+    border-color: #b3925f !important;
+    outline: none !important;
+}
+.ps-auth-form .ps-field input::placeholder {
+    color: rgba(61, 46, 40, 0.38) !important;
+}
+
+/* Dois campos lado a lado */
+.ps-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Esqueci minha senha */
+.ps-auth-forgot {
+    text-align: right;
+    margin: -4px 0 22px;
+}
+.ps-auth-forgot a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8a6d43;
+    text-decoration: none;
+}
+.ps-auth-forgot a:hover { text-decoration: underline; }
+
+/* Botão principal */
+.ps-auth-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #b3925f;
+    border: 1.5px solid #b3925f;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.ps-auth-btn:hover {
+    background: var(--marca-escuro);
+    border-color: var(--marca-escuro);
+}
+.ps-auth-btn i { font-size: 15px; }
+
+/* Divisor "ou" */
+.ps-auth-divider {
+    position: relative;
+    text-align: center;
+    margin: 26px 0 20px;
+}
+.ps-auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(61, 46, 40, 0.12);
+}
+.ps-auth-divider span {
+    position: relative;
+    background: #fff;
+    padding: 0 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(61, 46, 40, 0.45);
+}
+
+/* Link alternativo */
+.ps-auth-alt {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(61, 46, 40, 0.65);
+    margin: 0;
+}
+.ps-auth-alt a {
+    color: #8a6d43;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+}
+.ps-auth-alt a:hover { text-decoration: underline; }
+
+/* Aviso de privacidade */
+.ps-auth-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    background: #faf5ed;
+    border: 1px solid rgba(179, 146, 95, 0.28);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+}
+.ps-auth-note i {
+    color: #b3925f;
+    font-size: 13px;
+    margin-top: 2px;
+}
+.ps-auth-note p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: rgba(61, 46, 40, 0.65);
+    margin: 0;
+}
+
+@media (max-width: 575px) {
+    .ps-auth-card { padding: 30px 24px 28px; }
+    .ps-field-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ============================================
+   CARRINHO
+   ============================================ */
+
+.ps-cart-section {
+    padding: 90px 0 100px !important;
+}
+.ps-cart-section .infor-contact,
+.ps-cart-section .form-contact {
+    border-radius: 18px;
+    padding: 40px !important;
+}
+.ps-cart-section .infor-contact {
+    border: 1px solid rgba(61, 46, 40, 0.12) !important;
+}
+
+/* Tipografia Inter em todo o carrinho */
+.ps-cart-section,
+.ps-cart-section .heading,
+.ps-cart-section .text,
+.ps-cart-section input,
+.ps-cart-section textarea,
+.ps-cart-section button,
+.ps-cart-section h3,
+.ps-cart-section h4,
+.ps-cart-section h5,
+.ps-cart-section h6,
+.ps-cart-section p,
+.ps-cart-section span,
+.ps-cart-section label {
+    font-family: 'Inter', sans-serif !important;
+}
+.ps-cart-section .heading {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px !important;
+}
+.ps-cart-section .form-contact .text {
+    font-size: 14px;
+    color: rgba(61, 46, 40, 0.65);
+    margin-bottom: 24px;
+}
+
+/* Linha de item */
+.ps-cart-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 128px 110px 34px;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(61, 46, 40, 0.10);
+}
+.ps-cart-item-name {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--marca-escuro) !important;
+    margin: 0 0 3px 0 !important;
+}
+.ps-cart-item-unit {
+    font-size: 13px !important;
+    color: rgba(61, 46, 40, 0.55) !important;
+    margin: 0 !important;
+}
+
+/* Seletor de quantidade */
+.ps-cart-qty {
+    display: flex;
+    align-items: center;
+    width: 128px;
+    border: 1.5px solid rgba(61, 46, 40, 0.18);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.ps-cart-section .ps-qty-btn {
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #faf7f2 !important;
+    color: var(--marca-escuro) !important;
+    cursor: pointer;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+.ps-cart-section .ps-qty-btn:hover {
+    background: #b3925f !important;
+    color: #fff !important;
+}
+.ps-cart-section .ps-qty-input {
+    flex: 1 1 auto !important;
+    width: 44px !important;
+    min-width: 0 !important;
+    height: 38px !important;
+    text-align: center !important;
+    border: none !important;
+    border-left: 1.5px solid rgba(61, 46, 40, 0.12) !important;
+    border-right: 1.5px solid rgba(61, 46, 40, 0.12) !important;
+    border-radius: 0 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--marca-escuro) !important;
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.ps-qty-input:focus { outline: none; }
+
+.ps-cart-item-subtotal {
+    text-align: right;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8a6d43;
+}
+.ps-cart-remove {
+    border: none;
+    background: none;
+    color: rgba(61, 46, 40, 0.35);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 6px;
+    transition: color 0.2s ease;
+}
+.ps-cart-remove:hover { color: #c0392b; }
+
+/* Resumo */
+.ps-cart-summary {
+    border-top: 1.5px solid rgba(61, 46, 40, 0.15);
+    margin-top: 26px;
+    padding-top: 24px;
+}
+.ps-cart-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(61, 46, 40, 0.7);
+    margin-bottom: 9px;
+}
+.ps-cart-line span:last-child { font-weight: 600; }
+
+.ps-cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 12px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(61, 46, 40, 0.12);
+}
+
+/* Aviso de retirada */
+.ps-pickup-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #faf5ed;
+    border: 1.5px solid rgba(179, 146, 95, 0.35);
+    border-radius: 10px;
+    padding: 15px 18px;
+    margin-bottom: 18px;
+}
+.ps-pickup-info i {
+    color: #b3925f;
+    font-size: 17px;
+    margin-top: 2px;
+}
+.ps-pickup-info strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+    margin-bottom: 3px;
+}
+.ps-pickup-info p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(61, 46, 40, 0.65);
+    margin: 0;
+}
+
+/* Rótulo secundário dentro das opções (ex.: + R$ 8,00) */
+.ps-payment-option small {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(61, 46, 40, 0.55);
+    margin-top: 1px;
+}
+.ps-cart-total-label {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+}
+.ps-cart-total-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: #8a6d43;
+    letter-spacing: -0.5px;
+}
+.ps-cart-note {
+    font-size: 13px !important;
+    color: rgba(61, 46, 40, 0.5) !important;
+    margin: 8px 0 0 0 !important;
+}
+.ps-back-cart { margin: 24px 0 0 0; }
+
+/* Formulário de checkout */
+.ps-checkout-form { margin-top: 4px; }
+.ps-field { margin-bottom: 18px; }
+.ps-field label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+    margin-bottom: 7px;
+}
+.ps-field label span,
+.ps-payment-title span { color: #b3925f; }
+
+.ps-cart-section .ps-field input,
+.ps-cart-section .ps-field textarea {
+    width: 100% !important;
+    display: block !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    color: var(--marca-escuro) !important;
+    background: #fff !important;
+    border: 1.5px solid rgba(61, 46, 40, 0.18) !important;
+    border-radius: 10px !important;
+    padding: 13px 16px !important;
+    margin: 0 !important;
+    height: auto !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease;
+}
+.ps-cart-section .ps-field textarea {
+    min-height: 92px !important;
+    resize: vertical;
+    line-height: 1.5 !important;
+}
+.ps-cart-section .ps-field input:focus,
+.ps-cart-section .ps-field textarea:focus {
+    border-color: #b3925f !important;
+    outline: none !important;
+}
+.ps-cart-section .ps-field input::placeholder,
+.ps-cart-section .ps-field textarea::placeholder {
+    color: rgba(61, 46, 40, 0.38) !important;
+    font-size: 14px;
+}
+/* Campo com erro (validação do checkout) */
+.ps-cart-section .ps-field input.error,
+.ps-cart-section .ps-field textarea.error {
+    border-color: #c0392b !important;
+}
+
+/* Botão finalizar */
+.ps-checkout-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #b3925f;
+    border: 1.5px solid #b3925f;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.ps-checkout-btn:hover {
+    background: var(--marca-escuro);
+    border-color: var(--marca-escuro);
+}
+.ps-checkout-btn i { font-size: 17px; }
+
+/* Cards de escolha (entrega/retirada e pagamento) */
+.ps-choice-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.ps-choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1.5px solid rgba(61, 46, 40, 0.16);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    margin: 0;
+}
+.ps-choice:hover { border-color: rgba(179, 146, 95, 0.7); }
+
+/* Esconde o radio nativo, mantendo acessibilidade */
+.ps-cart-section .ps-choice input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    pointer-events: none;
+}
+
+.ps-choice-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f5efe5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b3925f;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+.ps-choice-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    min-width: 0;
+}
+.ps-choice-text strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+}
+.ps-choice-text small {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(61, 46, 40, 0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Marca de selecionado */
+.ps-choice-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #b3925f;
+    color: #fff;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.2s ease;
+}
+.ps-choice:has(input:checked) {
+    border-color: #b3925f;
+    background: #fdfaf5;
+    box-shadow: 0 4px 14px rgba(179, 146, 95, 0.18);
+}
+.ps-choice:has(input:checked) .ps-choice-icon {
+    background: #b3925f;
+    color: #fff;
+}
+.ps-choice:has(input:checked) .ps-choice-check {
+    opacity: 1;
+    transform: scale(1);
+}
+.ps-choice:has(input:focus-visible) {
+    outline: 2px solid #b3925f;
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .ps-choice-group { grid-template-columns: 1fr; }
+}
+
+/* Formas de pagamento */
+.ps-payment-block { margin: 26px 0; }
+.ps-payment-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--marca-escuro) !important;
+    margin-bottom: 12px !important;
+}
+.ps-payment-options {
+    display: flex;
+    gap: 12px;
+}
+.ps-payment-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 16px;
+    border: 1.5px solid rgba(61, 46, 40, 0.18);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--marca-escuro);
+    transition: all 0.2s ease;
+}
+.ps-payment-option:hover { border-color: #b3925f; }
+.ps-payment-option:has(input:checked) {
+    border-color: #b3925f;
+    background: #faf5ed;
+}
+.ps-payment-option input { accent-color: #b3925f; margin: 0; }
+.ps-payment-option i { color: #b3925f; font-size: 15px; }
+
+/* Botão finalizar */
+#checkout-button {
+    width: 100%;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+/* Carrinho vazio */
+.ps-empty-cart {
+    text-align: center;
+    padding: 70px 20px;
+}
+.ps-empty-cart i {
+    font-size: 62px;
+    color: rgba(61, 46, 40, 0.15);
+    margin-bottom: 22px;
+}
+.ps-empty-cart h3 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--marca-escuro);
+    margin-bottom: 10px;
+}
+.ps-empty-cart p {
+    color: rgba(61, 46, 40, 0.6);
+    margin-bottom: 26px;
+}
+.ps-empty-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 13px 30px !important;
+}
+
+@media (max-width: 575px) {
+    .ps-cart-item {
+        grid-template-columns: 1fr auto;
+        row-gap: 12px;
+    }
+    .ps-cart-item-subtotal { text-align: left; }
+    .ps-cart-section .infor-contact,
+    .ps-cart-section .form-contact { padding: 26px !important; }
+}
+
+/* Botão "Voltar para a loja" */
+.ps-back-to-shop {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8a6d43;
+    background: transparent;
+    border: 1.5px solid #b3925f;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 34px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+.ps-back-to-shop:hover {
+    background: #b3925f;
+    color: #fff;
+}
+.ps-back-to-shop i {
+    font-size: 13px;
+    transition: transform 0.25s ease;
+}
+.ps-back-to-shop:hover i {
+    transform: translateX(-3px);
+}
+
+/* ============================================
+   CONTATO — TIPOGRAFIA INTER
+   ============================================ */
+
+.contact-us .sub-heading,
+.contact-us .infor-text,
+.contact-us .infor-text .title,
+.contact-us .infor-text p,
+.contact-us .form-contact .heading,
+.contact-us .form-contact .text,
+.contact-us .comment-form input,
+.contact-us .comment-form textarea,
+.contact-us .comment-form .tf-button,
+.contact-us .content-contact .heading,
+.tf-section.contact-us .heading {
+    font-family: 'Inter', sans-serif !important;
+}
+.contact-us .form-contact .heading,
+.contact-us .content-contact .heading {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.contact-us .infor-text .title {
+    font-weight: 600;
+}
+.contact-us .comment-form input,
+.contact-us .comment-form textarea {
+    font-size: 15px;
+}
+
+/* ============================================
+   NOTAS DE AJUSTE
+   ============================================
+
+   Para ajustar os tons:
+   1. Altere apenas os valores das variáveis em :root
+   2. --marca-escuro: cor principal para header/footer/seções
+   3. --marca-overlay: versão translúcida para sobreposições
+   4. --marca-medio-escuro: tom intermediário para variação
+
+   Não altere os seletores CSS abaixo das variáveis.
+   ============================================ */
