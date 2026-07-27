@@ -1,0 +1,17 @@
+{
+  "buildCommand": "echo 'No build required'",
+  "outputDirectory": "kababi-package/kababi",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/kababi-package/kababi/$1" }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/kababi-package/kababi/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/kababi-package/kababi/$1"
+    }
+  ]
+}
