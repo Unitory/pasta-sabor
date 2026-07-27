@@ -1,6 +1,11 @@
 
+(function () {
   var slider = document.getElementById("myRange");
   var output = document.getElementById("value");
+  if (!slider || !output) {
+    return; // o filtro de preço foi removido da loja
+  }
+
   output.innerHTML = slider.value;
   slider.oninput = function () {
     output.innerHTML = this.value;
@@ -15,4 +20,4 @@
       "%)";
     slider.style.background = color;
   });
-
+})();

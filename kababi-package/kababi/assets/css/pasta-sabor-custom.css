@@ -2520,6 +2520,216 @@ header #site-logo img,
 }
 
 /* ============================================
+   MOBILE — AJUSTES GERAIS
+   ============================================ */
+
+@media (max-width: 991px) {
+    /* Header compacto */
+    #site-header,
+    body.header-fixed #site-header,
+    body.header-fixed2 #site-header {
+        height: 72px !important;
+        min-height: 72px !important;
+        max-height: 72px !important;
+    }
+    #site-header-inner { padding: 0 16px !important; }
+    #site-header .wrap-inner {
+        grid-template-columns: auto 1fr auto !important;
+        grid-template-rows: 1fr !important;
+        align-items: center !important;
+    }
+    /* tudo na mesma linha (senão o auto-placement joga as ações para baixo) */
+    #site-header #site-logo,
+    #site-header .header-actions,
+    #site-header .mobile-button {
+        grid-row: 1 !important;
+        align-self: center !important;
+    }
+    #site-logo img,
+    #site-header #site-logo img,
+    .logo img { height: 52px !important; max-width: 150px !important; }
+
+    /* Botão hambúrguer — visível de novo (estava oculto e deixava o site sem menu) */
+    .mobile-button,
+    #site-header .mobile-button,
+    .wrap-inner .mobile-button,
+    #site-header-inner .mobile-button {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 26px !important;
+        height: 26px !important;
+        min-width: 26px !important;
+        min-height: 26px !important;
+        overflow: visible !important;
+        grid-column: 3 !important;
+        justify-self: end !important;
+        align-self: center !important;
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        float: none !important;
+        cursor: pointer;
+        margin: 0 0 0 16px !important;
+        padding: 0 !important;
+    }
+    .mobile-button::before,
+    .mobile-button::after,
+    .mobile-button span {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 26px;
+        height: 2.5px;
+        border-radius: 2px;
+        background-color: var(--marca-escuro) !important;
+        transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+    .mobile-button::before { top: 5px; }
+    .mobile-button span    { top: 12px; }
+    .mobile-button::after  { top: 19px; }
+    .mobile-button.active::before { transform: translateY(7px) rotate(45deg); }
+    .mobile-button.active span    { opacity: 0; }
+    .mobile-button.active::after  { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Ações do header ao lado do hambúrguer */
+    .header-actions {
+        grid-column: 2 !important;
+        justify-self: end !important;
+        gap: 16px !important;
+    }
+    .header-login span { display: none !important; }
+
+    /* Menu mobile aberto pelo hambúrguer */
+    #main-nav-mobi {
+        position: absolute !important;
+        top: 72px;
+        left: 0;
+        width: 100% !important;
+        background-color: var(--header-bg) !important;
+        box-shadow: 0 12px 28px rgba(61, 46, 40, 0.14);
+        border-top: 1px solid rgba(61, 46, 40, 0.08);
+        z-index: 9998;
+    }
+    #main-nav-mobi .menu {
+        list-style: none;
+        margin: 0;
+        padding: 8px 0;
+    }
+    #main-nav-mobi .menu > li { width: 100%; }
+    #main-nav-mobi .menu > li > a {
+        display: block;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        color: var(--marca-escuro) !important;
+        padding: 14px 24px !important;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(61, 46, 40, 0.06);
+    }
+    #main-nav-mobi .menu > li:last-child > a { border-bottom: none; }
+    #main-nav-mobi .menu > li.current-menu-item > a,
+    #main-nav-mobi .menu > li > a:hover {
+        background-color: rgba(179, 146, 95, 0.14) !important;
+        font-weight: 600 !important;
+    }
+
+    /* Hero interna mais baixa */
+    .page-title.page-title-inner {
+        margin-top: 27px !important;
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+    }
+    .page-title-inner .page-title-heading .heading {
+        font-size: 40px !important;
+        white-space: normal !important;
+    }
+    .ps-breadcrumb-straddle ul {
+        width: auto !important;
+        max-width: 90vw;
+        padding: 0 18px !important;
+    }
+    .ps-breadcrumb-straddle ul li a,
+    .ps-breadcrumb-straddle ul li { font-size: 13px !important; }
+
+    /* Marcas d'água gigantes que estouravam a tela */
+    .tf-heading-bg .heading-bg-style02,
+    .wrap-about-us-style4 .tf-heading-bg .heading-bg-style02,
+    .tf-heading-bg .heading-bg-style {
+        font-size: 42px !important;
+        line-height: 46px !important;
+        letter-spacing: 2px !important;
+        top: 0 !important;
+    }
+    .tf-heading .tf-title {
+        font-size: 28px !important;
+        line-height: 36px !important;
+    }
+    .content-heading-wrap { padding-bottom: 40px !important; }
+
+    /* Seções com respiro menor */
+    .tf-section { padding: 60px 0 !important; }
+    .ps-cart-section,
+    .ps-auth-section { padding: 60px 0 70px !important; }
+
+    /* Evita rolagem horizontal */
+    html, body { overflow-x: hidden !important; }
+}
+
+@media (max-width: 767px) {
+    /* Colunas do template empilham (carrinho, contato, loja) */
+    .our-shop .col-box,
+    .contact-us .col-box,
+    .ps-cart-section .col-box,
+    .col-box.col-25,
+    .col-box.col-40,
+    .col-box.col-45,
+    .col-box.col-55,
+    .col-box.col-60,
+    .col-box.col-75 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        float: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: 22px;
+    }
+    .ps-cart-section .row:not([style*="display: none"]):not([style*="display:none"]),
+    .contact-us .row,
+    .our-shop .row { display: block; }
+    #empty-cart[style*="none"] { display: none !important; }
+
+    /* Nossa História: card de valores volta ao fluxo */
+    .ps-about-values-box {
+        margin-left: 0 !important;
+        margin-top: -60px !important;
+    }
+    .ps-about-right-wrap { margin-bottom: 90px; }
+    .ps-clients-card { margin: 20px auto -70px !important; }
+
+    /* Loja: sidebar acima da grade */
+    #sidebar { margin-bottom: 30px; }
+    .view-items { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+    .view-items .float-left,
+    .view-items .float-right { float: none !important; }
+    .ps-sort-select { width: 100%; }
+
+    /* Detalhes do produto */
+    .product-details h3.name-product { font-size: 26px !important; }
+    .items-shop-related { grid-template-columns: 1fr !important; }
+
+    /* Rodapé em coluna única */
+    .ps-footer-cols {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        text-align: left;
+    }
+}
+
+/* ============================================
    NOTAS DE AJUSTE
    ============================================
 
