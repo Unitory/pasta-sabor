@@ -3179,9 +3179,9 @@ header #site-logo img,
 
 /* Caixas dos passos */
 .ps-como-section .countter-box h6.heading {
-    font-family: 'Forum', cursive;
-    font-size: 18px;
-    line-height: 1.2;
+    font-family: 'Forum', cursive !important;
+    font-size: 24px !important;
+    line-height: 1.2 !important;
     color: #3d2e28;
     margin-bottom: 8px;
 }
@@ -3197,8 +3197,8 @@ header #site-logo img,
     margin-top: 50px;
 }
 .ps-como-section .col-md-12.text-center .heading {
-    font-family: 'Forum', cursive;
-    font-size: 1.5rem;
+    font-family: 'Forum', cursive !important;
+    font-size: 30px !important;
     color: #3d2e28;
     margin-bottom: 12px;
 }
