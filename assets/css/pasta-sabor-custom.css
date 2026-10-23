@@ -45,13 +45,8 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.1 !important;
 }
 
-/* Títulos de seção — Forum */
-.tf-title {
-    font-family: 'Forum', serif !important;
-    font-size: 44px !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-}
+/* Títulos de seção — manuscrita (Corinthia)
+   Removida a regra que forçava Forum. Agora herda Corinthia da regra base h1-h6 */
 
 /* Forum — elementos funcionais/labels (vermelho nas marcações) */
 h1.title,
@@ -3157,6 +3152,13 @@ header #site-logo img,
     font-size: 28px;
     line-height: 1.3;
     white-space: nowrap;
+}
+/* Nomes das cidades - Forum */
+.ps-regioes-section .our-menu-item h4.heading {
+    font-family: 'Forum', serif !important;
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+    color: #3d2e28 !important;
 }
 
 
