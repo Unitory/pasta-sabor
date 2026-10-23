@@ -1,6 +1,6 @@
 /**
  * Página de Carrinho - Pasta & Sabor
- * Gerencia a exibição do carrinho e finalização de pedido
+ * Gerencia a exibição do carrinho e FINALIZAÇÃO de pedido
  */
 
 (function() {
@@ -304,17 +304,23 @@
 
         // Lista de itens
         message += '*Itens do Pedido:*\n';
+        let hasConsulte = false;
         items.forEach(function(item) {
-            const sub = item.price * item.qty;
-            message += `• ${item.qty}x ${item.name} — ${brl(sub)}\n`;
+            if (item.price > 0) {
+                const sub = item.price * item.qty;
+                message += `• ${item.qty}x ${item.name} — ${brl(sub)}\n`;
+            } else {
+                message += `• ${item.qty}x ${item.name} — a combinar\n`;
+                hasConsulte = true;
+            }
         });
 
         // Valores
-        message += `\n*Subtotal:* ${brl(subtotal)}\n`;
+        message += `\n*Subtotal:* ${brl(subtotal)}${hasConsulte ? ' _(itens "a combinar" não incluídos)_' : ''}\n`;
         message += entrega
             ? `*Entrega:* ${brl(fee)}\n`
             : '*Retirada no local:* grátis\n';
-        message += `*Total: ${brl(subtotal + fee)}*\n\n`;
+        message += `*Total: ${brl(subtotal + fee)}*${hasConsulte ? ' + itens a combinar' : ''}\n\n`;
 
         // Forma de pagamento
         message += `*Pagamento:* ${formData.payment}\n\n`;
@@ -350,7 +356,7 @@
         const items = getCartItems();
         if (items.length === 0) {
             alert('Seu carrinho está vazio!');
-            window.location.href = 'our-shop.html';
+            window.location.href = 'our-menu.html';
             return;
         }
 
@@ -370,23 +376,62 @@
             reference: formData.reference
         });
 
-        // Montar mensagem
-        const message = buildWhatsAppMessage(formData);
-
-        // Codificar para URL
-        const encodedMessage = encodeURIComponent(message);
+        // Desabilitar botão imediatamente (evitar duplo envio)
+        var btn = document.getElementById('checkout-button');
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-check"></i> Enviando...';
+        }
 
         // Abrir WhatsApp
-        const whatsappUrl = `https://wa.me/5514996394451?text=${encodedMessage}`;
+        var message = buildWhatsAppMessage(formData);
+        var whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
         window.open(whatsappUrl, '_blank');
 
-        // Opcional: Limpar carrinho após enviar (descomentar se desejar)
-        // setTimeout(function() {
-        //     if (confirm('Pedido enviado! Deseja limpar o carrinho?')) {
-        //         clearCart();
-        //         window.location.href = 'index.html';
-        //     }
-        // }, 1000);
+        // Mostrar painel de confirmação e limpar carrinho
+        showOrderConfirmed(items, formData);
+        clearCart();
+    }
+
+    /**
+     * Exibe o painel de confirmação com resumo do pedido
+     * @param {Array} items - Itens do carrinho
+     * @param {Object} formData - Dados do formulário
+     */
+    function showOrderConfirmed(items, formData) {
+        var cartContent = document.getElementById('cart-content');
+        var emptyCart = document.getElementById('empty-cart');
+        var confirmed = document.getElementById('order-confirmed');
+
+        if (cartContent) cartContent.style.display = 'none';
+        if (emptyCart) emptyCart.style.display = 'none';
+        if (!confirmed) return;
+
+        // Montar resumo dos itens
+        var summaryEl = document.getElementById('oc-summary');
+        if (summaryEl) {
+            var entrega = formData.delivery === 'entrega';
+            var fee = entrega ? DELIVERY_FEE : 0;
+            var subtotal = getCartTotal();
+            var html = '';
+            items.forEach(function(item) {
+                var sub = item.price > 0
+                    ? 'R$ ' + (item.price * item.qty).toFixed(2).replace('.', ',')
+                    : 'a combinar';
+                html += '<div class="ps-oc-summary-item">' +
+                    '<span><span class="qty">' + item.qty + 'x</span>' + item.name + '</span>' +
+                    '<span>' + sub + '</span>' +
+                    '</div>';
+            });
+            html += '<div class="ps-oc-summary-total">' +
+                '<span>' + (entrega ? 'Total (com entrega)' : 'Total (retirada)') + '</span>' +
+                '<span>R$ ' + (subtotal + fee).toFixed(2).replace('.', ',') + '</span>' +
+                '</div>';
+            summaryEl.innerHTML = html;
+        }
+
+        confirmed.style.display = 'block';
+        confirmed.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // ========================================

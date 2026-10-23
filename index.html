@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR"><!--<![endif]-->
 
@@ -6,9 +6,25 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Pasta & Sabor — Início</title>
-    
-    <meta name="author" content="themesflat.com" />
+    <title>Pasta & Sabor | Massas Artesanais em Barra Bonita</title>
+
+    <meta name="description" content="Massas artesanais feitas à mão em Barra Bonita/SP. Talharins, risotos, molhos e congelados frescos. Entregamos na região. Peça pelo WhatsApp.">
+    <meta name="keywords" content="massa artesanal, massa fresca, massa caseira, Barra Bonita, massa congelada, talharim, risoto, molhos artesanais">
+    <meta name="author" content="Pasta & Sabor">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pastasabor.vercel.app/">
+    <meta property=”og:title” content=”Pasta & Sabor | Massas Artesanais em Barra Bonita”>
+    <meta property="og:description" content="Massas artesanais feitas à mão. Talharins, risotos, molhos e congelados frescos. Entregamos em Barra Bonita e região.">
+    <meta property="og:image" content="https://pastasabor.vercel.app/assets/logo/logo.jpeg">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name=”twitter:title” content=”Pasta & Sabor | Massas Artesanais”>
+    <meta name="twitter:description" content="Massas artesanais feitas à mão em Barra Bonita/SP">
+    <meta name="twitter:image" content="https://pastasabor.vercel.app/assets/logo/logo.jpeg">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
@@ -17,6 +33,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Theme Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -57,7 +74,7 @@
 									<a href="about.html">Nossa História</a>
 								</li>
 								<li class="menu-item">
-									<a href="our-shop.html">Loja</a>
+									<a href="our-menu.html">Cardápio</a>
 								</li>
 								<li class="menu-item">
 									<a href="contact.html">Contato</a>
@@ -65,16 +82,7 @@
 							</ul>
 						</nav>
 						<div class="header-actions">
-							<div class="header-login">
-								<a href="login.html">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-										<path d="M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z"/>
-										<path d="M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z"/>
-									</svg>
-									<span>Entrar</span>
-								</a>
-							</div>
-							<div class="header-cart">
+<div class="header-cart">
 								<a href="cart.html">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
 										<path d="M22.713,4.077A2.993,2.993,0,0,0,20.41,3H4.242L4.2,2.649A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.82-2h11.92a5,5,0,0,0,4.921-4.113l.785-4.354A2.994,2.994,0,0,0,22.713,4.077ZM21.4,6.178l-.786,4.354A3,3,0,0,1,17.657,13H5.419L4.478,5H20.41A1,1,0,0,1,21.4,6.178Z"/>
@@ -90,12 +98,16 @@
             </header>
 			<!-- page-title -->
 			<section class="page-title">
-					<!-- Vídeo de fundo -->
-					<video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="assets/img/slider/img_bg_slider_home01.jpg">
-						<source src="assets/video-hero.mp4" type="video/mp4">
+					<!-- Vídeo de fundo desktop -->
+					<video class="hero-video-bg hero-video-desktop" autoplay muted loop playsinline preload="auto" poster="assets/img/slider/img_bg_slider_home01.jpg">
+						<source src="assets/capa-hero.mp4" type="video/mp4">
+					</video>
+					<!-- Vídeo de fundo mobile -->
+					<video class="hero-video-bg hero-video-mobile" autoplay muted loop playsinline preload="auto" poster="assets/img/slider/img_bg_slider_home01.jpg">
+						<source src="assets/capa-hero-mobile.mp4" type="video/mp4">
 					</video>
 
-									<!-- Overlay escuro sobre o vídeo para legibilidade -->
+									<!-- Overlay escuro sobre o Vídeo para legibilidade -->
 					<div class="hero-video-overlay"></div>
 
 <div class="slider">
@@ -106,11 +118,10 @@
                                     <div class="container-fluid">
                                         <div class="page-tittle-slider distance">
                                             <div class="heading-tittle">
-                                                <h1 class="title color-style4 margin-6 margin-bt30">A Massa<br>que Abraça
-                                                </h1>
-                                                <p class="tf-sub-heading" style="color: white; margin-bottom: 20px;">Massas caseiras e alimentação saudável, feitas à mão para a sua mesa</p>
+                                                <h1 class="title color-style4 ps-hero-title margin-bt30" style="font-family: 'Forum', cursive !important;">A Massa<br>que Abraça</h1>
+                                                <p class="ps-hero-sub" style="line-height: 1.4;">Massas artesanais, recheios generosos e sabores autorais, feitos com cuidado para a sua mesa.</p>
                                                 <div class="flat-button">
-                                                    <a href="our-shop.html" class="tf-button color-text color-style1">Ver Loja</a>
+                                                    <a href="our-menu.html" class="tf-button color-text color-style1">Ver Cardápio</a>
                                                 </div>
                                             </div></div>
                                     </div>
@@ -124,21 +135,6 @@
 
 			<!-- about-us -->
 			<section class="tf-section wrap-about-us">
-				<!-- Círculo decorativo com frase da marca em português -->
-				<div class="iconbg_about">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="140" height="140">
-						<defs>
-							<path id="ps-circle-text" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
-						</defs>
-						<circle cx="100" cy="100" r="90" fill="none" stroke="#c8a96a" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>
-						<circle cx="100" cy="100" r="72" fill="none" stroke="#c8a96a" stroke-width="0.8" opacity="0.4"/>
-						<circle cx="100" cy="100" r="8" fill="#c8a96a"/>
-						<circle cx="100" cy="100" r="4" fill="#fff"/>
-						<text font-size="11.5" font-family="Inter, sans-serif" fill="#c8a96a" letter-spacing="4" font-weight="600">
-							<textPath href="#ps-circle-text" startOffset="0%">FEITO COM AMOR • MASSA ARTESANAL •</textPath>
-						</text>
-					</svg>
-				</div>
 				<div class="container-fluid cleafix">
 					<div class="row">
 						<div class="col-md-12 cleafix">
@@ -147,21 +143,24 @@
 									<h2 class="heading-bg-style">Bem-vindo</h2>
 								</div>
 								<div class="tf-heading text-center">
-									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Por que escolher a Pasta & Sabor</h4>
-									<p class="tf-sub-heading">Feitos à mão para você e sua família</p>
+									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Do nosso jeito. Para o seu momento.</h4>
+									<p class="tf-sub-heading">Artesanal na origem. Prática na sua cozinha.</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="tf-img-about wow fadeIn animated" data-wow-delay="0.3ms" data-wow-duration="1500ms">
-								<img src="assets/loja/rondelli-damasco.jpeg" alt="Rondelli de Damasco">
+						<div class="col-md-6" style="display: flex; align-items: flex-start; justify-content: center;">
+							<div class="tf-img-about wow slideInLeft animated" data-wow-delay="0.2ms" data-wow-duration="1200ms" style="overflow: hidden; border-radius: 24px; box-shadow: 0 12px 32px rgba(61, 46, 40, 0.10); width: 100%; height: 540px;">
+								<img src="assets/loja/presente-massa.jpeg" alt="Rondelli" style="width: 100%; height: 540px; object-fit: cover; object-position: center; display: block;">
 							</div>
 						</div>
 						<div class="col-md-6 no-pd-left">
-							<div class="content-about-us">
-								<p>Cozinha italiana que traz conforto e sofisticação para sua mesa. Massas, molhos e risotos artesanais, com ingredientes de verdade e preparo simples: alguns minutos e está pronto. Você merece uma comida que abraça.</p>
+							<div class="content-about-us wow slideInLeft animated" data-wow-delay="0.4ms" data-wow-duration="1200ms">
+								<p style="font-size: 0.85em; color: #6b6460; line-height: 1.6;">Tem dia que pede praticidade.<br>
+								Tem dia que pede um jantar especial.<br>
+								E tem aquele domingo em família que merece uma mesa cheia.</p>
+								<p style="margin-top: 1em; font-size: 0.85em; color: #6b6460; line-height: 1.6;">A Pasta &amp; Sabor nasceu para estar em todos eles. Nossas receitas são produzidas artesanalmente, em pequenos lotes, com atenção aos detalhes e aquele cuidado que faz a comida parecer feita especialmente para você.</p>
 								<div class="flat-button flat-button-style2">
-									<a href="about.html" class="tf-button color-style1">Conheça nossa história</a>
+									<a href="about.html" class="tf-button color-style1">Conheça Nossa História</a>
 								</div>
 							</div>
 						</div>
@@ -179,8 +178,8 @@
 									<h2 class="heading-bg-style">GALERIA</h2>
 								</div>
 								<div class="tf-heading text-center">
-									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Nossos Produtos e Sabores</h4>
-									<p class="tf-sub-heading">Feitos à mão para você e sua família</p>
+									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Escolha o que vai para a sua mesa</h4>
+									<p class="tf-sub-heading">Do freezer para a mesa, sem abrir mão do sabor</p>
 								</div>
 							</div>
 						</div>				
@@ -191,137 +190,137 @@
 								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
 									<div class="hover-effect h-100">
 										<div class="image h-100">
-											<img src="assets/loja/risoto-limao.jpeg" alt="">
+											<img src="assets/loja/rondelli-damasco.jpeg" alt="Rondelis Artesanais">
 										</div>
 										<div class="content-box">
 											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
 											</div>
 											<div class="content">
 												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
+													<a href="our-menu.html">Rondelis</a>
 												</h4>
 												<div class="sub-heading">
-													Feitas à mão com carinho
+													Massa delicada, recheios generosos e combinações para transformar o jantar
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> 
-							</div>
-							<div class="col-box col-25">
-								<div class="gallery-box  h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
-									<div class="hover-effect h-100">
-										<div class="image h-100">
-											<img src="assets/loja/risoto-funghi.jpeg" alt="">
-										</div>
-										<div class="content-box">
-											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
-											</div>
-											<div class="content">
-												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
-												</h4>
-												<div class="sub-heading">
-													Feitas à mão com carinho
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> 
+								</div>
 							</div>
 							<div class="col-box col-25">
 								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
 									<div class="hover-effect h-100">
 										<div class="image h-100">
-											<img src="assets/loja/rondelli-damasco.jpeg" alt="">
+											<img src="assets/loja/risoto-funghi.jpeg" alt="Risotos Autorais">
 										</div>
 										<div class="content-box">
 											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
 											</div>
 											<div class="content">
 												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
+													<a href="our-menu.html">Risotos</a>
 												</h4>
 												<div class="sub-heading">
-													Feitas à mão com carinho
+													Praticidade sem abrir mão de uma experiência especial
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> 
-							</div>		
-							<div class="col-box col-25">
-								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
-									<div class="hover-effect h-100">
-										<div class="image h-100">
-											<img src="assets/loja/molhos.jpeg" alt="">
-										</div>
-										<div class="content-box">
-											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
-											</div>
-											<div class="content">
-												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
-												</h4>
-												<div class="sub-heading">
-													Feitas à mão com carinho
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> 
+								</div>
 							</div>
 							<div class="col-box col-25">
 								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
 									<div class="hover-effect h-100">
 										<div class="image h-100">
-											<img src="assets/loja/talharim.jpeg" alt="">
+											<img src="assets/loja/risoto-limao.jpeg" alt="Lasanhas Artesanais">
 										</div>
 										<div class="content-box">
 											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
 											</div>
 											<div class="content">
 												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
+													<a href="our-menu.html">Lasanhas</a>
 												</h4>
 												<div class="sub-heading">
-													Feitas à mão com carinho
+													Camadas de sabor para colocar no forno e aproveitar
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> 
+								</div>
+							</div>
+							<div class="col-box col-25">
+								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
+									<div class="hover-effect h-100">
+										<div class="image h-100">
+											<img src="assets/loja/molhos.jpeg" alt="Molhos Artesanais">
+										</div>
+										<div class="content-box">
+											<div class="icon">
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
+											</div>
+											<div class="content">
+												<h4 class="heading letter-spacing-1">
+													<a href="our-menu.html">Molhos</a>
+												</h4>
+												<div class="sub-heading">
+													Porque uma boa massa merece um bom molho
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-box col-25">
+								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
+									<div class="hover-effect h-100">
+										<div class="image h-100">
+											<img src="assets/loja/talharim.jpeg" alt="Linha Talharim">
+										</div>
+										<div class="content-box">
+											<div class="icon">
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
+											</div>
+											<div class="content">
+												<h4 class="heading letter-spacing-1">
+													<a href="our-menu.html">Massas Artesanais</a>
+												</h4>
+												<div class="sub-heading">
+													Para preparar do seu jeito e criar a sua receita
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="col-box col-50">
 								<div class="gallery-box h-100 wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
 									<div class="hover-effect h-100">
 										<div class="image h-100">
-											<img src="assets/loja/presente-massa.jpeg" alt="">
+											<img src="assets/loja/presente-massa.jpeg" alt="Kits e Presentes">
 										</div>
 										<div class="content-box">
 											<div class="icon">
-												<a href="our-shop.html"><i class="fal fa-arrow-right"></i></a>
+												<a href="our-menu.html"><i class="fal fa-arrow-right"></i></a>
 											</div>
 											<div class="content">
 												<h4 class="heading letter-spacing-1">
-													<a href="our-shop.html">Massas Artesanais</a>
+													<a href="our-menu.html">Sabores Especiais</a>
 												</h4>
 												<div class="sub-heading">
-													Feitas à mão com carinho
+													Criações autorais e kits para sair do óbvio
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> 
-							</div>									
+								</div>
+							</div>
 					</div>
 					<div class="flat-button box-center">
-						<a href="our-shop.html" class="tf-button color-style3">Conheça nosso catálogo</a>
+						<a href="our-menu.html" class="tf-button color-style3">Ver Cardápio Completo</a>
 					</div>	
 				</div>
 			</section>
@@ -336,40 +335,40 @@
 							<div class="col-box col-25">
 								<div class="box box-countter-chefs text-center padding-right-24">
 									<div class="wrap-icon">
-										<img src="assets/icons/handmade.svg" alt="Feito à Mão" style="width: 60px; height: 60px;">
+										<img src="assets/icons/handmade.svg" alt="Feito à mão" style="width: 44px; height: 44px;">
 									</div>
 									<div class="countter-box">
-										<h6 class="heading">Feito à Mão</h6>
+										<h6 class="heading" style="font-family: 'Forum', cursive !important;">Feito à mão</h6>
 									</div>
 								</div>
 							</div>
 							<div class="col-box col-25">
 								<div class="box box-countter-chefs text-center padding-right-38">
 									<div class="wrap-icon">
-										<img src="assets/icons/temperature-frigid.svg" alt="Congelados na Hora" style="width: 60px; height: 60px;">
+										<img src="assets/icons/temperature-frigid.svg" alt="Congelados na Hora" style="width: 44px; height: 44px;">
 									</div>
 									<div class="countter-box">
-										<h6 class="heading">Congelados na Hora</h6>
+										<h6 class="heading" style="font-family: 'Forum', cursive !important;">Congelados na Hora</h6>
 									</div>
 								</div>
 							</div>
 							<div class="col-box col-25">
 								<div class="box box-countter-chefs text-center padding-right-38">
 									<div class="wrap-icon">
-										<img src="assets/icons/alarm-clock.svg" alt="Pronto em Minutos" style="width: 60px; height: 60px;">
+										<img src="assets/icons/alarm-clock.svg" alt="Pronto em Minutos" style="width: 44px; height: 44px;">
 									</div>
 									<div class="countter-box">
-										<h6 class="heading">Pronto em Minutos</h6>
+										<h6 class="heading" style="font-family: 'Forum', cursive !important;">Pronto em Minutos</h6>
 									</div>
 								</div>
 							</div>
 							<div class="col-box col-25 no-pd-right">
 								<div class="box box-countter-chefs text-center padding-left-9">
 									<div class="wrap-icon">
-										<img src="assets/icons/seedling.svg" alt="Sabores Naturais" style="width: 60px; height: 60px;">
+										<img src="assets/icons/seedling.svg" alt="Sabores Naturais" style="width: 44px; height: 44px;">
 									</div>
 									<div class="countter-box">
-										<h6 class="heading">Sabores Naturais</h6>
+										<h6 class="heading" style="font-family: 'Forum', cursive !important;">Sabores Naturais</h6>
 									</div>
 								</div>
 							</div>
@@ -384,23 +383,23 @@
 					<div class="row">
 						<div class="col-md-12 cleafix">
 							<div class="content-heading-wrap">
-								<div class="tf-heading-bg cleafix">
+								<div class="tf-heading-bg color-style1 cleafix">
 									<h2 class="heading-bg-style ">Depoimentos</h2>
 								</div>
 								<div class="tf-heading text-center">
 									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">O que nossos clientes dizem</h4>
-									<p class="tf-sub-heading">Feitos à mão para você e sua família</p>
+									<p class="tf-sub-heading">O que quem prova não esquece</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="wrap-Depoimentoss-slider">
+							<div class="wrap-Depoimentoss-slider wow slideInLeft animated" data-wow-delay="0.2ms" data-wow-duration="1200ms">
                                 <div class="swiper-container carousel">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="slider-item Depoimentoss-style">
                                                 <span class="flaticon-quotation"></span>
-                                                <p>Você merece uma comida que abraça. A Pasta & Sabor traz o sabor da cozinha italiana artesanal para sua mesa, com praticidade e qualidade que fazem toda a diferença.</p>
+                                                <p>você merece uma comida que Abraça. A Pasta & Sabor traz o sabor da cozinha italiana artesanal para sua mesa, com praticidade e qualidade que fazem toda a diferença.</p>
                                                 <div class="name-position">
                                                     Cliente Pasta & Sabor
                                                 </div>
@@ -409,7 +408,7 @@
 										<div class="swiper-slide">
                                             <div class="slider-item Depoimentoss-style">
                                                 <span class="flaticon-quotation"></span>
-                                                <p>Você merece uma comida que abraça. A Pasta & Sabor traz o sabor da cozinha italiana artesanal para sua mesa, com praticidade e qualidade que fazem toda a diferença.</p>
+                                                <p>você merece uma comida que Abraça. A Pasta & Sabor traz o sabor da cozinha italiana artesanal para sua mesa, com praticidade e qualidade que fazem toda a diferença.</p>
                                                 <div class="name-position">
                                                     Cliente Pasta & Sabor
                                                 </div>
@@ -423,8 +422,8 @@
 						</div>
 						<div class="col-md-6">
 							<div class="image-Depoimentoss">
-								<div class="image wow fadeIn animated" data-wow-delay="0.3ms" data-wow-duration="1500ms">
-									<img src="assets/massa.jpg" alt="Massa artesanal Pasta & Sabor">
+								<div class="image wow slideInLeft animated" data-wow-delay="0.4ms" data-wow-duration="1200ms" style="overflow: hidden; border-radius: 24px; box-shadow: 0 12px 32px rgba(61, 46, 40, 0.10);">
+									<img src="assets/img/arroz-legumes.jpeg" alt="Massa artesanal Pasta & Sabor">
 								</div>
 							</div>
 						</div>
@@ -432,54 +431,141 @@
 				</div>
 			</section>
 			<!-- DepoimentosS -->
-			<!-- Eventos -->
-			<section class="tf-section tf-blog">
+			<!-- Regiões Atendidas -->
+			<section class="tf-section ps-regioes-section">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12 cleafix">
 							<div class="content-heading-wrap">
-								<div class="tf-heading-bg cleafix">
-									<h2 class="heading-bg-style">Eventos</h2>
+								<div class="tf-heading-bg color-style1 cleafix">
+									<h2 class="heading-bg-style">ROTAS</h2>
 								</div>
 								<div class="tf-heading text-center">
-									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Nossos Eventos</h4>
-									<p class="tf-sub-heading">Momentos especiais que criamos juntos</p>
+									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Regiões Atendidas</h4>
+									<p class="tf-sub-heading">Entregamos por rota: escolha sua região e receba no dia certo</p>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="ps-events-grid">
-						<div class="ps-event-card">
-							<div class="ps-event-img">
-								<img src="assets/loja/rondelli-damasco.jpeg" alt="Feira de Massas Artesanais">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="our-menu-box mb">
+									<div class="our-menu-item active wow fadeInUp animated" data-wow-delay="0.2ms" data-wow-duration="1200ms">
+										<div class="content-menu-item">
+											<h4 class="heading">Barra Bonita</h4>
+											<div class="sub-heading">Entrega local, prazo flexível</div>
+										</div>
+										<div class="pricing-menu-item"><span>Sem mínimo</span></div>
+									</div>
+									<div class="our-menu-item wow fadeInUp animated" data-wow-delay="0.3ms" data-wow-duration="1300ms">
+										<div class="content-menu-item">
+											<h4 class="heading">Macatuba</h4>
+											<div class="sub-heading">Rota semanal, dia a confirmar</div>
+										</div>
+										<div class="pricing-menu-item"><span>R$ 100–120</span></div>
+									</div>
+								</div>
 							</div>
-							<div class="ps-event-caption">
-								<h5 class="ps-event-name">Feira de Massas Artesanais</h5>
-								<span class="ps-event-date">15 de Junho, 2025</span>
+							<div class="col-md-6">
+								<div class="our-menu-box mb">
+									<div class="our-menu-item wow fadeInUp animated" data-wow-delay="0.4ms" data-wow-duration="1400ms">
+										<div class="content-menu-item">
+											<h4 class="heading">Jaú</h4>
+											<div class="sub-heading">Rota semanal, dia a confirmar</div>
+										</div>
+										<div class="pricing-menu-item"><span>R$ 120–150</span></div>
+									</div>
+									<div class="our-menu-item wow fadeInUp animated" data-wow-delay="0.5ms" data-wow-duration="1500ms">
+										<div class="content-menu-item">
+											<h4 class="heading">Outras cidades</h4>
+											<div class="sub-heading">Rota consolidada, sob consulta</div>
+										</div>
+										<div class="pricing-menu-item"><span>Consulte</span></div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="ps-event-card">
-							<div class="ps-event-img">
-								<img src="assets/loja/presente-massa.jpeg" alt="Workshop de Culinária Italiana">
-							</div>
-							<div class="ps-event-caption">
-								<h5 class="ps-event-name">Workshop de Culinária Italiana</h5>
-								<span class="ps-event-date">22 de Julho, 2025</span>
+
+						<div class="flat-button box-center">
+							<a href="https://wa.me/5514996394451?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20entregas%20na%20minha%20regi%C3%A3o." class="tf-button color-style3" target="_blank" rel="noopener">Falar no WhatsApp</a>
+						</div>
+				</div>
+			</section>
+			<!-- /Regiões Atendidas -->
+
+			<!-- Como funciona -->
+			<section class="tf-section ps-como-section">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 cleafix">
+							<div class="content-heading-wrap">
+								<div class="tf-heading-bg color-style1 cleafix">
+									<h2 class="heading-bg-style">PEDIDOS</h2>
+								</div>
+								<div class="tf-heading text-center">
+									<h4 class="tf-title wow zoomIn animated" data-wow-delay="0.3ms" data-wow-duration="1200ms">Como funciona</h4>
+									<p class="tf-sub-heading">Da nossa cozinha à sua mesa</p>
+								</div>
 							</div>
 						</div>
-						<div class="ps-event-card">
-							<div class="ps-event-img">
-								<img src="assets/loja/molhos.jpeg" alt="Degustação de Molhos Artesanais">
+
+						<div class="col-box col-25">
+							<div class="box box-countter-chefs text-center padding-right-24">
+								<div class="wrap-icon">
+									<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+								</div>
+								<div class="countter-box">
+									<h6 class="heading">Escolha seus produtos</h6>
+									<p>Monte o pedido pelo cardápio do site.</p>
+								</div>
 							</div>
-							<div class="ps-event-caption">
-								<h5 class="ps-event-name">Degustação de Molhos</h5>
-								<span class="ps-event-date">10 de Agosto, 2025</span>
+						</div>
+						<div class="col-box col-25">
+							<div class="box box-countter-chefs text-center padding-right-38">
+								<div class="wrap-icon">
+									<svg width="44" height="44" viewBox="0 0 24 24" fill="#C8A96A"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+								</div>
+								<div class="countter-box">
+									<h6 class="heading">Finalize pelo WhatsApp</h6>
+									<p>Confirmação direta com a gente.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-box col-25">
+							<div class="box box-countter-chefs text-center padding-right-38">
+								<div class="wrap-icon">
+									<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+								</div>
+								<div class="countter-box">
+									<h6 class="heading">Combinamos a entrega</h6>
+									<p>Confirmamos o dia da rota para sua região.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-box col-25 no-pd-right">
+							<div class="box box-countter-chefs text-center padding-left-9">
+								<div class="wrap-icon">
+									<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4C7.03 4 3 8.03 3 13h18c0-4.97-4.03-9-9-9z"/><line x1="2" y1="13" x2="22" y2="13"/><line x1="2" y1="17" x2="22" y2="17"/><line x1="12" y1="4" x2="12" y2="6"/></svg>
+								</div>
+								<div class="countter-box">
+									<h6 class="heading">Receba com cuidado</h6>
+									<p>Embalado para chegar em condições ideais.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 text-center">
+							<h4 class="heading">Domingo sob encomenda</h4>
+							<p>Almoço em família merece uma mesa especial. Peça com antecedência e deixe o trabalho com a gente.</p>
+							<div class="flat-button box-center">
+								<a href="our-menu.html" class="tf-button color-style3">Ver Cardápio</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- Eventos -->
+			<!-- /Como funciona -->
+
 
 
 			<!-- footer -->
@@ -516,7 +602,7 @@
 							<ul class="ps-footer-links">
 								<li><a href="index.html">Início</a></li>
 								<li><a href="about.html">Nossa História</a></li>
-								<li><a href="our-shop.html">Loja</a></li>
+								<li><a href="our-menu.html">Cardápio</a></li>
 								<li><a href="contact.html">Contato</a></li>
 							</ul>
 						</div>
@@ -525,7 +611,7 @@
 						<div class="ps-fcol">
 							<h4 class="ps-footer-heading">Horário de Entrega</h4>
 							<ul class="ps-footer-hours">
-								<li><span class="ps-fhour-day">Seg – Sex</span> das 9h às 18h</li>
+								<li><span class=”ps-fhour-day”>Seg a Sex</span> das 9h às 18h</li>
 								<li><span class="ps-fhour-day">Sábado</span> das 9h às 14h</li>
 								<li><span class="ps-fhour-day">Domingo</span> sob encomenda</li>
 							</ul>
@@ -535,9 +621,8 @@
 						<div class="ps-fcol">
 							<h4 class="ps-footer-heading">Siga-nos</h4>
 							<div class="ps-footer-social-icons">
-								<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-								<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-								<a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+								<a href="https://instagram.com/pastaesabore" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+								<a href="https://wa.me/5514996394451" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 							</div>
 						</div>
 
@@ -546,12 +631,20 @@
 
 				<!-- Bottom bar -->
 				<div class="ps-footer-bottom">
-					<p>© 2026 Pasta & Sabor. Todos os direitos reservados.</p>
+					<p>Â© 2026 Pasta & Sabor. Todos os direitos reservados.</p>
 				</div>
 			</footer>
 			<!-- footer -->
         </div><!-- Page  -->
     </div><!-- Wrapper -->
+
+<!-- Botão Flutuante WhatsApp -->
+<a href="https://wa.me/5514996394451?text=Olá! Gostaria de fazer um pedido" class="ps-whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+		<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+	</svg>
+</a>
+
 <!-- Javascript -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/shortcodes.js"></script>
@@ -564,6 +657,10 @@
 <script src="assets/js/swiper.js"></script>
 <!-- Carrinho de Compras -->
 <script src="assets/js/cart.js?v=20260727000026"></script>
+		<script>
+		<!-- Supabase + Auth Header -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/auth-header.js"></script>
 </body>
 </html>
 

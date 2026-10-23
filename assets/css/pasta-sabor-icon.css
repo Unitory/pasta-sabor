@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'kababi';
-  src:  url('../font/kababi.eot');
-  src:  url('../font/kababi.eot') format('embedded-opentype'),
-    url('../font/kababi.ttf') format('truetype'),
-    url('../font/kababi.woff') format('woff'),
-    url('../font/kababi.svg') format('svg');
+  font-family: 'pasta-sabor';
+  src:  url('../font/pasta-sabor.eot');
+  src:  url('../font/pasta-sabor.eot') format('embedded-opentype'),
+    url('../font/pasta-sabor.ttf') format('truetype'),
+    url('../font/pasta-sabor.woff') format('woff'),
+    url('../font/pasta-sabor.svg') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-kababi"], [class*=" icon-kababi"] {
+[class^="icon-pasta-sabor"], [class*=" icon-pasta-sabor"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'kababi' !important;
+  font-family: 'pasta-sabor' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -25,20 +25,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-kababiemail:before {
+.icon-pasta-sabor-email:before {
   content: "\e900";
 }
-.icon-kababicall:before {
+.icon-pasta-sabor-call:before {
   content: "\e901";
 }
-.icon-kababimap:before {
+.icon-pasta-sabor-map:before {
   content: "\e902";
 }
-.icon-kababimap1 .path1:before {
+.icon-pasta-sabor-map1 .path1:before {
   content: "\e903";
   color: rgb(0, 0, 0);
 }
-.icon-kababimap1 .path2:before {
+.icon-pasta-sabor-map1 .path2:before {
   content: "\e904";
   color: rgb(200, 169, 106);
 }

@@ -118,31 +118,19 @@
                                 <div style="margin-top: 30px;">
                                     <ul style="list-style: none; padding: 0;">
                                         <li style="margin-bottom: 10px;">
-                                            <a href="#" style="display: block; padding: 12px 15px; background: #e74c3c; color: white; text-decoration: none; border-radius: 4px;">
+                                            <a href="#" id="tab-dados" onclick="showTab('dados',this)" style="display: block; padding: 12px 15px; background: #b07838; color: white; text-decoration: none; border-radius: 4px;">
                                                 <i class="fas fa-user" style="margin-right: 8px;"></i>
                                                 Meus Dados
                                             </a>
                                         </li>
                                         <li style="margin-bottom: 10px;">
-                                            <a href="#" style="display: block; padding: 12px 15px; background: #f5f5f5; color: #333; text-decoration: none; border-radius: 4px;">
+                                            <a href="#" id="tab-pedidos" onclick="showTab('pedidos',this)" style="display: block; padding: 12px 15px; background: #f5f5f5; color: #3d2e28; text-decoration: none; border-radius: 4px;">
                                                 <i class="fas fa-shopping-bag" style="margin-right: 8px;"></i>
                                                 Meus Pedidos
                                             </a>
                                         </li>
-                                        <li style="margin-bottom: 10px;">
-                                            <a href="#" style="display: block; padding: 12px 15px; background: #f5f5f5; color: #333; text-decoration: none; border-radius: 4px;">
-                                                <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
-                                                Endereços
-                                            </a>
-                                        </li>
-                                        <li style="margin-bottom: 10px;">
-                                            <a href="#" style="display: block; padding: 12px 15px; background: #f5f5f5; color: #333; text-decoration: none; border-radius: 4px;">
-                                                <i class="fas fa-heart" style="margin-right: 8px;"></i>
-                                                Favoritos
-                                            </a>
-                                        </li>
                                         <li style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
-                                            <a href="login.html" style="display: block; padding: 12px 15px; background: #fff; border: 2px solid #e74c3c; color: #e74c3c; text-decoration: none; border-radius: 4px; text-align: center;">
+                                            <a href="#" onclick="doLogout(event)" style="display: block; padding: 12px 15px; background: #fff; border: 2px solid #b07838; color: #b07838; text-decoration: none; border-radius: 4px; text-align: center;">
                                                 <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
                                                 Sair
                                             </a>
@@ -155,118 +143,119 @@
                         <!-- Coluna direita: Conteúdo -->
                         <div class="col-box col-75">
                             <!-- Dados do Perfil -->
-                            <div class="infor-contact border-style2" style="margin-bottom: 30px;">
+                            <div id="section-dados" class="infor-contact border-style2" style="margin-bottom: 30px;">
                                 <h4 class="heading">Dados do Perfil</h4>
 
-                                <!-- TODO: dados virão do Supabase Auth -->
                                 <div style="margin-top: 30px;">
-                                    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-                                        <div style="flex: 1; min-width: 250px;">
-                                            <div style="margin-bottom: 20px;">
-                                                <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
-                                                    <i class="fas fa-user" style="margin-right: 5px; color: #e74c3c;"></i>
-                                                    Nome
-                                                </label>
-                                                <p style="margin: 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
-                                                    João Silva
-                                                </p>
+
+                                    <!-- Visualização -->
+                                    <div id="profile-view">
+                                        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                                            <div style="flex: 1; min-width: 250px;">
+                                                <div style="margin-bottom: 20px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
+                                                        <i class="fas fa-user" style="margin-right: 5px; color: #b07838;"></i>
+                                                        Nome
+                                                    </label>
+                                                    <p id="disp-name" style="margin: 0; padding: 10px; background: #fdf5e8; border-radius: 4px;">—</p>
+                                                </div>
+                                                <div style="margin-bottom: 20px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
+                                                        <i class="fas fa-envelope" style="margin-right: 5px; color: #b07838;"></i>
+                                                        E-mail
+                                                    </label>
+                                                    <p id="disp-email" style="margin: 0; padding: 10px; background: #fdf5e8; border-radius: 4px;">—</p>
+                                                </div>
                                             </div>
-                                            <div style="margin-bottom: 20px;">
-                                                <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
-                                                    <i class="fas fa-envelope" style="margin-right: 5px; color: #e74c3c;"></i>
-                                                    E-mail
-                                                </label>
-                                                <p style="margin: 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
-                                                    joao.silva@email.com
-                                                </p>
+                                            <div style="flex: 1; min-width: 250px;">
+                                                <div style="margin-bottom: 20px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
+                                                        <i class="fas fa-phone" style="margin-right: 5px; color: #b07838;"></i>
+                                                        Telefone/WhatsApp
+                                                    </label>
+                                                    <p id="disp-phone" style="margin: 0; padding: 10px; background: #fdf5e8; border-radius: 4px;">—</p>
+                                                </div>
+                                                <div style="margin-bottom: 20px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
+                                                        <i class="fas fa-calendar" style="margin-right: 5px; color: #b07838;"></i>
+                                                        Cliente desde
+                                                    </label>
+                                                    <p id="disp-since" style="margin: 0; padding: 10px; background: #fdf5e8; border-radius: 4px;">—</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style="flex: 1; min-width: 250px;">
-                                            <div style="margin-bottom: 20px;">
-                                                <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
-                                                    <i class="fas fa-phone" style="margin-right: 5px; color: #e74c3c;"></i>
-                                                    Telefone/WhatsApp
-                                                </label>
-                                                <p style="margin: 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
-                                                    (14) 99999-9999
-                                                </p>
-                                            </div>
-                                            <div style="margin-bottom: 20px;">
-                                                <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #666;">
-                                                    <i class="fas fa-calendar" style="margin-right: 5px; color: #e74c3c;"></i>
-                                                    Cliente desde
-                                                </label>
-                                                <p style="margin: 0; padding: 10px; background: #f9f9f9; border-radius: 4px;">
-                                                    Janeiro de 2026
-                                                </p>
-                                            </div>
+                                        <div class="flat-button flat-button-style2" style="margin-top: 20px;">
+                                            <a href="#" onclick="showEditForm(event)" class="tf-button color-style1">
+                                                <i class="fas fa-edit" style="margin-right: 8px;"></i>
+                                                Editar Perfil
+                                            </a>
                                         </div>
                                     </div>
 
-                                    <div class="flat-button flat-button-style2" style="margin-top: 20px;">
-                                        <a href="#" class="tf-button color-style1">
-                                            <i class="fas fa-edit" style="margin-right: 8px;"></i>
-                                            Editar Perfil
-                                        </a>
+                                    <!-- Formulário de edição (oculto por padrão) -->
+                                    <div id="profile-edit" style="display:none">
+                                        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                                            <div style="flex: 1; min-width: 250px;">
+                                                <div style="margin-bottom: 16px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 6px; color: #666; font-size: 13px;">Nome completo</label>
+                                                    <input type="text" id="edit-name" style="width:100%;padding:10px 12px;border:1.5px solid #e8d5b0;border-radius:6px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box" placeholder="Seu nome completo">
+                                                </div>
+                                                <div style="margin-bottom: 16px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 6px; color: #666; font-size: 13px;">Telefone/WhatsApp</label>
+                                                    <input type="tel" id="edit-phone" style="width:100%;padding:10px 12px;border:1.5px solid #e8d5b0;border-radius:6px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box" placeholder="(14) 99999-0000">
+                                                </div>
+                                            </div>
+                                            <div style="flex: 1; min-width: 250px;">
+                                                <div style="margin-bottom: 16px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 6px; color: #666; font-size: 13px;">Nova senha <span style="font-weight:400;color:#999">(deixe em branco para manter)</span></label>
+                                                    <input type="password" id="edit-pw1" style="width:100%;padding:10px 12px;border:1.5px solid #e8d5b0;border-radius:6px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box" placeholder="Mínimo 6 caracteres">
+                                                </div>
+                                                <div style="margin-bottom: 16px;">
+                                                    <label style="display: block; font-weight: bold; margin-bottom: 6px; color: #666; font-size: 13px;">Confirmar nova senha</label>
+                                                    <input type="password" id="edit-pw2" style="width:100%;padding:10px 12px;border:1.5px solid #e8d5b0;border-radius:6px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box" placeholder="Repita a senha">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="edit-msg" style="display:none;margin-bottom:12px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500"></div>
+                                        <div style="display:flex;gap:10px;margin-top:8px">
+                                            <a href="#" onclick="saveProfile(event)" class="tf-button color-style1" style="display:inline-flex;align-items:center">
+                                                <i class="fas fa-check" style="margin-right: 8px;"></i>Salvar alterações
+                                            </a>
+                                            <a href="#" onclick="cancelEdit(event)" style="display:inline-flex;align-items:center;padding:12px 20px;color:#7a6a62;text-decoration:none;font-weight:600;font-size:14px">
+                                                Cancelar
+                                            </a>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
 
                             <!-- Meus Pedidos -->
-                            <div class="infor-contact border-style2">
+                            <div id="section-pedidos" class="infor-contact border-style2" style="display:none">
                                 <h4 class="heading">Meus Pedidos</h4>
 
-                                <!-- TODO: histórico virá do Supabase -->
-                                <div style="margin-top: 30px; text-align: center; padding: 60px 20px;">
-                                    <i class="fas fa-shopping-bag" style="font-size: 80px; color: #ddd; margin-bottom: 20px;"></i>
-                                    <h5 style="color: #666; margin-bottom: 10px;">Seu histórico de pedidos aparecerá aqui</h5>
-                                    <p style="color: #999; margin-bottom: 30px;">
-                                        Você ainda não fez nenhum pedido. Que tal começar agora?
-                                    </p>
-                                    <div class="flat-button flat-button-style2">
-                                        <a href="our-menu.html" class="tf-button color-style1">
-                                            <i class="fas fa-utensils" style="margin-right: 8px;"></i>
-                                            Ver Cardápio
-                                        </a>
+                                <div id="orders-container" style="margin-top: 30px;">
+                                    <div id="orders-loading" style="text-align:center;padding:40px;color:#999">
+                                        <i class="fas fa-spinner fa-spin" style="font-size:24px;margin-bottom:12px;display:block"></i>
+                                        Carregando pedidos…
                                     </div>
-                                </div>
-
-                                <!-- Exemplo de como ficará um pedido (comentado, para referência futura) -->
-                                <!--
-                                <div style="margin-top: 20px;">
-                                    <div style="border: 1px solid #eee; padding: 20px; border-radius: 4px; margin-bottom: 15px;">
-                                        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 15px;">
-                                            <div>
-                                                <h6 style="margin: 0 0 5px 0; color: #333;">
-                                                    Pedido #1234
-                                                </h6>
-                                                <p style="margin: 0; color: #999; font-size: 14px;">
-                                                    15 de Janeiro, 2026 às 14:30
-                                                </p>
-                                            </div>
-                                            <div style="text-align: right;">
-                                                <span style="display: inline-block; padding: 5px 15px; background: #2ecc71; color: white; border-radius: 20px; font-size: 13px;">
-                                                    Entregue
-                                                </span>
-                                                <p style="margin: 10px 0 0 0; font-weight: bold; color: #e74c3c; font-size: 18px;">
-                                                    R$ 85,00
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0f0f0;">
-                                            <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;">
-                                                • 2x Talharim Limone Siciliano<br>
-                                                • 1x Molho Parmigiano al Tartufo
-                                            </p>
-                                        </div>
-                                        <div style="margin-top: 15px;">
-                                            <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px;">
-                                                Ver detalhes <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
+                                    <div id="orders-list" style="display:none"></div>
+                                    <div id="orders-empty" style="display:none;text-align: center; padding: 60px 20px;">
+                                        <i class="fas fa-shopping-bag" style="font-size: 80px; color: #ddd; margin-bottom: 20px;display:block"></i>
+                                        <h5 style="color: #666; margin-bottom: 10px;">Você ainda não fez nenhum pedido</h5>
+                                        <p style="color: #999; margin-bottom: 30px;">Que tal começar agora?</p>
+                                        <div class="flat-button flat-button-style2">
+                                            <a href="our-menu.html" class="tf-button color-style1">
+                                                <i class="fas fa-utensils" style="margin-right: 8px;"></i>
+                                                Ver Cardápio
                                             </a>
                                         </div>
                                     </div>
+                                    <div id="orders-unavailable" style="display:none;text-align: center; padding: 40px 20px; background:#fdf5e8; border-radius:8px;">
+                                        <i class="fas fa-info-circle" style="font-size:32px;color:#b07838;margin-bottom:12px;display:block"></i>
+                                        <p style="color:#7a6a62;font-size:14px">O histórico de pedidos online estará disponível em breve.</p>
+                                    </div>
                                 </div>
-                                -->
                             </div>
                         </div>
                     </div>
@@ -409,5 +398,144 @@
 <script src="assets/js/swiper.js"></script>
 <!-- Carrinho de Compras -->
 <script src="assets/js/cart.js?v=20260727000026"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function () {
+'use strict';
+var SB_URL = 'https://ofwpocthtfssffyxagve.supabase.co';
+var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9md3BvY3RodGZzc2ZmeXhhZ3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxMzgzNDgsImV4cCI6MjEwNTcxNDM0OH0.OOUdG9Pem_gwTkbH6Ke9o28E_C8Ua97MwfW5bqMtr5k';
+var db = window.supabase.createClient(SB_URL, SB_KEY);
+var currentUser = null;
+
+/* ── Proteção de rota ────────────────────────────────────────────── */
+db.auth.getSession().then(function (r) {
+  var session = r.data && r.data.session;
+  if (!session) { window.location.href = 'login.html'; return; }
+  currentUser = session.user;
+  fillProfile(currentUser);
+});
+db.auth.onAuthStateChange(function (event, session) {
+  if (event === 'SIGNED_OUT') window.location.href = 'login.html';
+});
+
+/* ── Preenche perfil ─────────────────────────────────────────────── */
+function fillProfile(user) {
+  var meta = user.user_metadata || {};
+  document.getElementById('disp-name').textContent  = meta.full_name || '(não informado)';
+  document.getElementById('disp-email').textContent = user.email || '';
+  document.getElementById('disp-phone').textContent = meta.phone || '(não informado)';
+  var since = new Date(user.created_at);
+  var months = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  document.getElementById('disp-since').textContent = months[since.getMonth()] + ' de ' + since.getFullYear();
+  // Preenche campos de edição
+  document.getElementById('edit-name').value  = meta.full_name || '';
+  document.getElementById('edit-phone').value = meta.phone     || '';
+}
+
+/* ── Logout ──────────────────────────────────────────────────────── */
+window.doLogout = async function (e) {
+  e && e.preventDefault();
+  await db.auth.signOut();
+  window.location.href = 'login.html';
+};
+
+/* ── Tabs ────────────────────────────────────────────────────────── */
+window.showTab = function (tab, el) {
+  if (el) el.preventDefault ? el.preventDefault() : null;
+  // Seções
+  document.getElementById('section-dados').style.display   = tab === 'dados'   ? '' : 'none';
+  document.getElementById('section-pedidos').style.display = tab === 'pedidos' ? '' : 'none';
+  // Links do menu
+  ['dados','pedidos'].forEach(function(t){
+    var link = document.getElementById('tab-' + t);
+    if (!link) return;
+    link.style.background = t === tab ? '#b07838' : '#f5f5f5';
+    link.style.color      = t === tab ? '#fff'    : '#3d2e28';
+  });
+  if (tab === 'pedidos') loadOrders();
+};
+
+/* ── Carrega pedidos ─────────────────────────────────────────────── */
+async function loadOrders() {
+  document.getElementById('orders-loading').style.display     = 'block';
+  document.getElementById('orders-list').style.display        = 'none';
+  document.getElementById('orders-empty').style.display       = 'none';
+  document.getElementById('orders-unavailable').style.display = 'none';
+  var { data, error } = await db.from('orders')
+    .select('*')
+    .eq('customer_email', currentUser.email)
+    .order('created_at', { ascending: false });
+  document.getElementById('orders-loading').style.display = 'none';
+  if (error) {
+    // Tabela pode não existir ainda
+    document.getElementById('orders-unavailable').style.display = 'block';
+    return;
+  }
+  if (!data || data.length === 0) {
+    document.getElementById('orders-empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('orders-list').style.display = 'block';
+  var statusMap = { novo: 'Novo', preparando: 'Preparando', pronto: 'Pronto', entregue: 'Entregue', cancelado: 'Cancelado' };
+  var statusColor = { novo: '#2563eb', preparando: '#d97706', pronto: '#7c3aed', entregue: '#16a34a', cancelado: '#dc2626' };
+  var statusBg    = { novo: '#dbeafe', preparando: '#fef3c7', pronto: '#ede9fe', entregue: '#dcfce7', cancelado: '#fee2e2' };
+  document.getElementById('orders-list').innerHTML = data.map(function(o){
+    var date = new Date(o.created_at).toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    var total = o.total ? 'R$ ' + parseFloat(o.total).toFixed(2).replace('.',',') : '—';
+    var st = o.status || 'novo';
+    return '<div style="border:1px solid #e8e2da;padding:18px 20px;border-radius:8px;margin-bottom:14px">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">'
+      + '<div><strong style="color:#3d2e28">Pedido #' + o.id + '</strong>'
+      + '<p style="margin:4px 0 0;color:#999;font-size:13px">' + date + '</p></div>'
+      + '<div style="text-align:right">'
+      + '<span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;background:' + (statusBg[st]||'#f5f5f5') + ';color:' + (statusColor[st]||'#666') + '">' + (statusMap[st]||st) + '</span>'
+      + '<p style="margin:6px 0 0;font-weight:700;color:#b07838;font-size:17px">' + total + '</p></div></div>'
+      + (o.notes ? '<p style="margin:10px 0 0;font-size:13px;color:#666;border-top:1px solid #f0ebe4;padding-top:10px">Obs: ' + o.notes + '</p>' : '')
+      + '</div>';
+  }).join('');
+}
+
+/* ── Edição de perfil ────────────────────────────────────────────── */
+window.showEditForm = function (e) {
+  e && e.preventDefault();
+  document.getElementById('profile-view').style.display = 'none';
+  document.getElementById('profile-edit').style.display = 'block';
+  document.getElementById('edit-msg').style.display = 'none';
+};
+window.cancelEdit = function (e) {
+  e && e.preventDefault();
+  document.getElementById('profile-edit').style.display = 'none';
+  document.getElementById('profile-view').style.display = 'block';
+};
+window.saveProfile = async function (e) {
+  e && e.preventDefault();
+  var name  = document.getElementById('edit-name').value.trim();
+  var phone = document.getElementById('edit-phone').value.trim();
+  var pw1   = document.getElementById('edit-pw1').value;
+  var pw2   = document.getElementById('edit-pw2').value;
+  var msg   = document.getElementById('edit-msg');
+  if (!name) { showEditMsg('Informe seu nome.', false); return; }
+  if (pw1 && pw1.length < 6) { showEditMsg('A senha deve ter pelo menos 6 caracteres.', false); return; }
+  if (pw1 && pw1 !== pw2)    { showEditMsg('As senhas não coincidem.', false); return; }
+  var payload = { data: { full_name: name, phone: phone } };
+  if (pw1) payload.password = pw1;
+  var { data, error } = await db.auth.updateUser(payload);
+  if (error) { showEditMsg('Erro: ' + error.message, false); return; }
+  currentUser = data.user;
+  fillProfile(currentUser);
+  showEditMsg('Dados salvos com sucesso!', true);
+  document.getElementById('edit-pw1').value = '';
+  document.getElementById('edit-pw2').value = '';
+  setTimeout(function () { cancelEdit(); }, 1200);
+};
+function showEditMsg(text, ok) {
+  var el = document.getElementById('edit-msg');
+  el.style.display = 'block';
+  el.textContent = text;
+  el.style.background = ok ? '#dcfce7' : '#fee2e2';
+  el.style.color = ok ? '#166534' : '#991b1b';
+}
+})();
+</script>
 </body>
 </html>

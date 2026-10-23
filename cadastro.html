@@ -121,7 +121,6 @@
                                 <p class="ps-auth-sub">Preencha seus dados para começar</p>
                             </div>
 
-                            <!-- TODO: integrar Supabase Auth aqui -->
                             <form id="signup-form" class="ps-auth-form" onsubmit="return false;">
                                 <div class="ps-field">
                                     <label for="signup-name">Nome completo <span>*</span></label>
@@ -159,6 +158,8 @@
                                     <i class="fas fa-user-check"></i>
                                     Criar conta
                                 </button>
+
+                                <div id="signup-msg" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500"></div>
 
                                 <div class="ps-auth-divider"><span>ou</span></div>
 
@@ -251,5 +252,78 @@
 <script src="assets/js/swiper.js"></script>
 <!-- Carrinho de Compras -->
 <script src="assets/js/cart.js?v=20260727000026"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  'use strict';
+  var SB_URL = 'https://ofwpocthtfssffyxagve.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9md3BvY3RodGZzc2ZmeXhhZ3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxMzgzNDgsImV4cCI6MjEwNTcxNDM0OH0.OOUdG9Pem_gwTkbH6Ke9o28E_C8Ua97MwfW5bqMtr5k';
+  var db = window.supabase.createClient(SB_URL, SB_KEY);
+
+  function showMsg(text, ok) {
+    var el = document.getElementById('signup-msg');
+    el.style.display = 'block';
+    el.textContent = text;
+    el.style.background = ok ? '#dcfce7' : '#fee2e2';
+    el.style.color = ok ? '#166534' : '#991b1b';
+  }
+
+  // Redireciona se já estiver logado
+  db.auth.getSession().then(function (r) {
+    if (r.data && r.data.session) {
+      window.location.href = 'minha-conta.html';
+    }
+  });
+
+  document.getElementById('signup-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('signup-button');
+    var name  = document.getElementById('signup-name').value.trim();
+    var email = document.getElementById('signup-email').value.trim();
+    var phone = document.getElementById('signup-phone').value.trim();
+    var pass  = document.getElementById('signup-password').value;
+    var pass2 = document.getElementById('signup-confirm-password').value;
+
+    if (!name)  { showMsg('Informe seu nome completo.', false); return; }
+    if (!email) { showMsg('Informe um e-mail válido.', false); return; }
+    if (!phone) { showMsg('Informe seu telefone/WhatsApp.', false); return; }
+    if (pass.length < 6) { showMsg('A senha deve ter pelo menos 6 caracteres.', false); return; }
+    if (pass !== pass2)  { showMsg('As senhas não coincidem.', false); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Criando conta…';
+
+    var { data, error } = await db.auth.signUp({
+      email: email,
+      password: pass,
+      options: {
+        data: { full_name: name, phone: phone }
+      }
+    });
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-user-check"></i> Criar conta';
+
+    if (error) {
+      var msg = error.message;
+      if (msg.includes('already registered') || msg.includes('already been registered')) {
+        msg = 'Este e-mail já está cadastrado. Tente fazer login.';
+      }
+      showMsg(msg, false);
+      return;
+    }
+
+    // Supabase pode logar diretamente (se confirmação de e-mail estiver desativada)
+    // ou exigir confirmação por e-mail
+    if (data.session) {
+      showMsg('Conta criada com sucesso! Redirecionando…', true);
+      setTimeout(function () { window.location.href = 'minha-conta.html'; }, 900);
+    } else {
+      showMsg('Conta criada! Verifique seu e-mail para confirmar o cadastro antes de entrar.', true);
+      btn.textContent = 'Acesse o seu e-mail para confirmar';
+    }
+  });
+})();
+</script>
 </body>
 </html>

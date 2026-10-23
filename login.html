@@ -121,7 +121,6 @@
                                 <p class="ps-auth-sub">Entre com seus dados para continuar</p>
                             </div>
 
-                            <!-- TODO: integrar Supabase Auth aqui -->
                             <form id="login-form" class="ps-auth-form" onsubmit="return false;">
                                 <div class="ps-field">
                                     <label for="login-email">E-mail <span>*</span></label>
@@ -134,13 +133,28 @@
                                 </div>
 
                                 <div class="ps-auth-forgot">
-                                    <a href="#">Esqueci minha senha</a>
+                                    <a href="#" id="forgot-link" onclick="showForgot(event)">Esqueci minha senha</a>
                                 </div>
 
                                 <button id="login-button" type="submit" class="ps-auth-btn">
                                     <i class="fas fa-sign-in-alt"></i>
                                     Entrar
                                 </button>
+
+                                <div id="login-msg" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500"></div>
+
+                                <!-- Painel recuperação de senha (aparece inline) -->
+                                <div id="forgot-panel" style="display:none;margin-top:16px;padding:16px;background:#fdf5e8;border:1px solid #e8c894;border-radius:10px">
+                                    <p style="font-size:13px;font-weight:600;margin-bottom:10px;color:#3d2e28"><i class="fas fa-envelope" style="margin-right:6px;opacity:.7"></i>Recuperar senha</p>
+                                    <div class="ps-field" style="margin-bottom:10px">
+                                        <input type="email" id="forgot-email" placeholder="Digite seu e-mail cadastrado" style="width:100%;padding:9px 12px;border:1.5px solid #e8d5b0;border-radius:8px;font-size:13px;font-family:inherit;outline:none">
+                                    </div>
+                                    <div style="display:flex;gap:8px">
+                                        <button type="button" onclick="sendForgot()" style="flex:1;padding:9px;background:#b07838;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">Enviar link</button>
+                                        <button type="button" onclick="hideForgot()" style="padding:9px 14px;background:#fff;color:#7a6a62;border:1.5px solid #e8d5b0;border-radius:8px;font-size:13px;font-family:inherit;cursor:pointer">Cancelar</button>
+                                    </div>
+                                    <div id="forgot-msg" style="display:none;margin-top:10px;font-size:12px"></div>
+                                </div>
 
                                 <div class="ps-auth-divider"><span>ou</span></div>
 
@@ -233,5 +247,69 @@
 <script src="assets/js/swiper.js"></script>
 <!-- Carrinho de Compras -->
 <script src="assets/js/cart.js?v=20260727000026"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  'use strict';
+  var SB_URL = 'https://ofwpocthtfssffyxagve.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9md3BvY3RodGZzc2ZmeXhhZ3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxMzgzNDgsImV4cCI6MjEwNTcxNDM0OH0.OOUdG9Pem_gwTkbH6Ke9o28E_C8Ua97MwfW5bqMtr5k';
+  var db = window.supabase.createClient(SB_URL, SB_KEY);
+
+  function showMsg(id, text, ok) {
+    var el = document.getElementById(id);
+    el.style.display = 'block';
+    el.textContent = text;
+    el.style.background = ok ? '#dcfce7' : '#fee2e2';
+    el.style.color = ok ? '#166534' : '#991b1b';
+  }
+
+  // Redireciona se já estiver logado
+  db.auth.getSession().then(function (r) {
+    if (r.data && r.data.session) {
+      window.location.href = 'minha-conta.html';
+    }
+  });
+
+  // Login
+  document.getElementById('login-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('login-button');
+    var email = document.getElementById('login-email').value.trim();
+    var pass = document.getElementById('login-password').value;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando…';
+    var { data, error } = await db.auth.signInWithPassword({ email: email, password: pass });
+    if (error) {
+      showMsg('login-msg', 'E-mail ou senha incorretos. Tente novamente.', false);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+      return;
+    }
+    showMsg('login-msg', 'Login realizado! Redirecionando…', true);
+    setTimeout(function () { window.location.href = 'minha-conta.html'; }, 800);
+  });
+
+  // Painel recuperação
+  window.showForgot = function (e) {
+    e.preventDefault();
+    document.getElementById('forgot-panel').style.display = 'block';
+    document.getElementById('forgot-email').value = document.getElementById('login-email').value;
+    document.getElementById('forgot-email').focus();
+  };
+  window.hideForgot = function () {
+    document.getElementById('forgot-panel').style.display = 'none';
+    document.getElementById('forgot-msg').style.display = 'none';
+  };
+  window.sendForgot = async function () {
+    var email = document.getElementById('forgot-email').value.trim();
+    var msg = document.getElementById('forgot-msg');
+    if (!email) { msg.style.display = 'block'; msg.style.color = '#991b1b'; msg.textContent = 'Informe o e-mail cadastrado.'; return; }
+    var { error } = await db.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + '/login.html' });
+    msg.style.display = 'block';
+    if (error) { msg.style.color = '#991b1b'; msg.textContent = 'Erro ao enviar. Verifique o e-mail.'; }
+    else { msg.style.color = '#166534'; msg.textContent = 'Link enviado! Verifique sua caixa de entrada.'; }
+  };
+})();
+</script>
 </body>
 </html>

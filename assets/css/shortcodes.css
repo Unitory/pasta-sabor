@@ -94,7 +94,7 @@
     z-index: 2;
     font-size: 14px;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     line-height: 35px;
     text-transform: uppercase;
     -webkit-transition: all 0.3s ease;
@@ -156,7 +156,7 @@
     z-index: 2;
     font-size: 16px;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     text-transform: uppercase;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -543,7 +543,7 @@ height: 811px;
     position: relative;
     font-size: 18px;
     line-height: 32px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 400;
     letter-spacing: -0.5px;
     color: #C19977;
@@ -667,7 +667,7 @@ height: 811px;
 
 .breadcrumbs ul li{
     display: inline-block;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 600;
     font-size: 20px;
     line-height: 35px;
@@ -748,7 +748,7 @@ height: 811px;
     font-size: 18px;
     line-height: 32px;
     color: #333333;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     padding-right: 115px;
     margin-bottom: 38px;
 }
@@ -898,14 +898,14 @@ height: 811px;
 }
 
 .tf-sub-heading{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 18px;
     line-height: 32px;
     margin-top: -15px;
 }
 
 .sub-heading{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 30px;
     color: #666666;
@@ -913,7 +913,7 @@ height: 811px;
 }
 
 .sub-heading-style2{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 32px;
     color: #666666;
@@ -921,7 +921,7 @@ height: 811px;
 }
 
 .text{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size:16px;
     line-height:32px;
     font-weight: 400;
@@ -1706,7 +1706,7 @@ height: 811px;
 }
 
 .our-menu-item .content-menu-item .sub-heading{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 22px;
     margin-top: -8px;
@@ -1824,7 +1824,7 @@ height: 811px;
 
 .our-menu-item.our-menu-item-style02 .content-menu-item .pricing .number-underline{
     position: relative;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 30px;
     color: #bdbdbd;
@@ -1845,7 +1845,7 @@ height: 811px;
 
 .our-menu-item.our-menu-item-style02 .content-menu-item .pricing .number{
     position: absolute;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 20px;
     line-height: 30px;
     color: #c19977;
@@ -1975,7 +1975,7 @@ height: 811px;
 .countter-box .number{
     font-size: 24px;
     font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     color: #1D1D1D;
 }
 
@@ -2173,7 +2173,7 @@ height: 811px;
 }
 
 .testimonials-style .name-position{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 18px;
     font-weight: 600;
 }
@@ -2337,7 +2337,7 @@ height: 811px;
 }
 
 .testimonials-inner-style3 .image-box .content .position{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 400;
     font-size: 15px;
     line-height: 45px;
@@ -2419,7 +2419,7 @@ height: 811px;
 }
 
 .post .content-post .meta-post li a{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 14px;
     color: #666666;
     font-weight: 400;
@@ -2464,7 +2464,7 @@ height: 811px;
 }
 
 .post.post2 .content-post .meta-post .name{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     color: #666666;
     margin-top: 4px;
     margin-left: 8px;
@@ -2485,7 +2485,7 @@ height: 811px;
 }
 
 .post.post2 .content-post .date-style2 span{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 14px;
     line-height: 32px;
     text-transform: uppercase;
@@ -2539,7 +2539,7 @@ height: 811px;
 }
 
 .post.post2.post3 .content-post .meta-post .name {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     color: #C19977;
     margin-top: -4px;
     margin-left: 10px;
@@ -2569,7 +2569,7 @@ height: 811px;
 
 .post.post2.post3 .content-post .date-style3 .date,
 .post.post2.post3 .content-post .date-style3 .month{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 600;
     color: #fff;
 }
@@ -2597,7 +2597,7 @@ height: 811px;
 }
 
 .post.post2.post3 .content-post .comment a{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     font-weight: 400;
     line-height: 28px;
@@ -2693,7 +2693,7 @@ height: 811px;
     font-size: 15px;
     line-height: 42px;
     color: #1D1D1D;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     position: absolute;
     right: 16.2%;
     top: 3%;
@@ -2720,7 +2720,7 @@ height: 811px;
 .comment-list .comment-reply a {
     color: #1d1d1d;
     font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 14px;
     line-height: 50px;
     text-transform: uppercase;
@@ -2981,7 +2981,7 @@ height: 811px;
 }
 
 .about-box-list .list-benefit li{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 35px;
     color: #1d1d1d;
@@ -3150,7 +3150,7 @@ height: 811px;
 }
 
 .flat-tabs.flat-tabs-menu .menu-tab li a{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 600;
     font-size: 18px;
     line-height: 35px;
@@ -3190,7 +3190,7 @@ height: 811px;
 
 .our-menu-item-style3 .content-menu-item .pricing{
     margin-top: 3px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 20px;
     font-weight: 600;
     line-height: 30px;
@@ -3556,7 +3556,7 @@ height: 811px;
 
 .team-box-style2.style3 .content .text{
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 28px;
     color: #666666;
@@ -3723,7 +3723,7 @@ height: 811px;
 }
 
 .view-items .show-results{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 16px;
     line-height: 35px;
     font-weight: 400;
@@ -3864,7 +3864,7 @@ height: 811px;
 }
 
 .product-content .pricing{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 20px;
     line-height: 35px;
     color: #696969;
@@ -3909,7 +3909,7 @@ height: 811px;
 }
 
 .details_content .pricing{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 30px;
     line-height:35px;
     color: #c8a96a;
@@ -3959,7 +3959,7 @@ height: 811px;
     padding: 0px 20px;
     font-size: 16px;
     font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     color: #1d1d1d;
     z-index: 10;
 }
@@ -4106,7 +4106,7 @@ input.star {
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease;
     transition: all .3s ease;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
 }
 
 .comment-form.comment-form-style2 select{
@@ -4114,7 +4114,7 @@ input.star {
 }
 
 .comment-form.comment-form-style2 input::placeholder{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;
@@ -4124,7 +4124,7 @@ input.star {
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
 }
 
 .comment-form.comment-form-style2 select,
@@ -4217,7 +4217,7 @@ input.star {
 }
 
 .widget.widget-info .infor-text .title{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 18px;
     line-height: 32px;
     font-weight: 600;

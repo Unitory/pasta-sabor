@@ -15,7 +15,7 @@
 
     var retinaLogos = function() {
         // Retina logo override desabilitado — Pasta & Sabor usa logo customizado (logo-sfundo.png)
-        // Os logos do template Kababi foram removidos para não sobrescrever o logo da marca.
+        // Os logos do template original foram removidos para não sobrescrever o logo da marca.
       };
 
       var headerFixed = function() {

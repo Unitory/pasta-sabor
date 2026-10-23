@@ -1,7 +1,201 @@
-/**
- * Pasta & Sabor - Customizações de Identidade Visual
+﻿/* ═══ TIPOGRAFIA PASTA & SABOR ═════════════════════════════════════
+   Champagne Limousines → Hero principal (serif elegante)
+   Corinthia → títulos narrativos / poéticos (verde)
+   Forum     → rótulos funcionais, nomes, labels (vermelho)
+   Forum → texto corrido (substituído de Open Sans para maior elegância)
+   ═══════════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Corinthia&display=swap');
+
+/* Champagne Limousines - Fonte local */
+@font-face {
+    font-family: 'Champagne Limousines';
+    src: url('../font/ChampagneLimousines.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Champagne Limousines';
+    src: url('../font/ChampagneLimousines-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Champagne Limousines';
+    src: url('../font/ChampagneLimousines-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Champagne Limousines';
+    src: url('../font/ChampagneLimousines-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Base: Corinthia para todos os títulos, primeira letra maiúscula natural */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corinthia', cursive !important;
+    text-transform: none !important;
+    color: var(--marca-escuro) !important;
+    font-size: 1.8em !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.1 !important;
+}
+
+/* Títulos de seção — Forum */
+.tf-title {
+    font-family: 'Forum', serif !important;
+    font-size: 44px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+}
+
+/* Forum — elementos funcionais/labels (vermelho nas marcações) */
+h1.title,
+h5,
+h6.name,
+h6.title,
+h6.name-product,
+h6.widget-title,
+h6.ps-values-title,
+.ps-footer-heading,
+.infor-contact h4.heading,
+.form-contact h4.heading {
+    font-family: 'Forum', cursive !important;
+    letter-spacing: 0.02em !important;
+    font-size: 1em !important;
+}
+
+/* Subtítulos das seções — ocultos para hierarquia mais limpa */
+.tf-heading .tf-sub-heading {
+    display: none !important;
+}
+
+/* Marcas d'água de seção — Forum, dourado da marca, centralizadas */
+.heading-bg-style,
+.heading-bg-style02 {
+    font-family: 'Forum', cursive !important;
+    text-transform: uppercase !important;
+    color: #b07838 !important;
+    font-size: 100px !important;
+    line-height: 1.1 !important;
+    opacity: 0.22 !important;
+    text-align: center !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+    width: auto !important;
+}
+
+/* ── Empilhamento universal watermark + título Corinthia ─────────
+   Funciona para heading-bg-style (absolute) e heading-bg-style02 (flow)
+   baseado no mesmo padrão que já funciona em .wrap-about-us-style4
+   ──────────────────────────────────────────────────────────────── */
+.content-heading-wrap .tf-heading-bg {
+    position: relative !important;
+    height: 0 !important;
+    overflow: visible !important;
+}
+
+
+/* ═══ ABOUT.HTML — seção Nascida da cozinha de casa ══════════════════════
+   Corrige excesso de padding do template (175px topo) e
+   alinha o texto verticalmente com a imagem
+   ════════════════════════════════════════════════════════════════════════ */
+.wrap-about-us-style4 {
+    padding: 80px 0 80px 0 !important;
+}
+.wrap-about-us-style4 .content-heading-wrap {
+    padding-bottom: 48px !important;
+}
+.wrap-about-us-style4 .about-inner-content-box {
+    padding: 0 8% 0 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.wrap-about-us-style4 > .container-fluid > .row:last-child {
+    align-items: center;
+}
+
+/* Equaliza o tamanho do texto do about.html com o da seção Bem-vindo do index.html.
+   .sub-heading-style2 define font-size: 15px, mas o body tem 30px.
+   Com inherit, o 0.85em nos <p> resolve ~25.5px, igual ao index.html. */
+.wrap-about-us-style4 .about-inner-content-box .sub-heading-style2 {
+    font-size: inherit !important;
+}
+
+/* heading-bg-style: já é absolute — garantir centrado e top correto */
+.content-heading-wrap .tf-heading-bg .heading-bg-style {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: -16px !important;
+}
+
+/* heading-bg-style02: converter de flow para absolute para mesmo comportamento */
+.content-heading-wrap .tf-heading-bg .heading-bg-style02 {
+    position: absolute !important;
+    margin-bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: -16px !important;
+}
+
+/* ═══ HERO — título, subtítulo e degradê inferior ══════════════════════════
+   Sobrepõe o cap de 1.8em da tipografia geral apenas dentro da hero
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Título hero: Cormorant Garamond Bold, creme, uppercase */
+.slider-item .page-tittle-slider .heading-tittle h1.ps-hero-title,
+.ps-hero-title {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 500 !important;
+    font-size: clamp(60px, 8vw, 110px) !important;
+    line-height: 1.0 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    color: #fdf5e8 !important;
+    text-shadow: 0 2px 18px rgba(61, 46, 40, 0.35) !important;
+    margin-bottom: 20px !important;
+}
+
+/* Subtítulo hero: uma linha, Forum, creme suave */
+.ps-hero-sub {
+    font-family: 'Forum', serif !important;
+    font-size: clamp(17px, 1.5vw, 22px) !important;
+    color: rgba(253, 245, 232, 0.85) !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1.6 !important;
+    text-transform: none !important;
+    max-width: 480px !important;
+    margin-bottom: 32px !important;
+}
+
+/* Degradê inferior marrom — fade de baixo para cima */
+.page-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55%;
+    background: linear-gradient(to top, rgba(61, 46, 40, 0.50) 0%, rgba(61, 46, 40, 0) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Garantir que o slider fique acima do degradê */
+.page-title .slider {
+    position: relative;
+    z-index: 3 !important;
+}
+
+/* Pasta & Sabor - Customizações de Identidade Visual
  *
- * Remove pretos do template Kababi e substitui por tons da marca.
+ * Remove pretos do template original e substitui por tons da marca.
  * NÃO altera estrutura, layout ou posicionamento.
  */
 
@@ -239,6 +433,24 @@ header #site-logo img,
     margin-top: 90px !important; /* empurra o hero para baixo do header */
 }
 
+/* Altura do hero — reduzida do padrão 811px do template */
+.page-title .slider-item {
+    height: 580px !important;
+}
+
+@media (max-width: 991px) {
+    .page-title .slider-item {
+        height: 420px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .page-title .slider-item {
+        height: 340px !important;
+    }
+}
+
+
 /* Vídeo de fundo da hero */
 .hero-video-bg {
     position: absolute;
@@ -248,6 +460,20 @@ header #site-logo img,
     height: 100%;
     object-fit: cover;
     z-index: 0;
+}
+
+/* Responsividade dos vídeos hero: desktop/mobile */
+.hero-video-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .hero-video-desktop {
+        display: none;
+    }
+    .hero-video-mobile {
+        display: block;
+    }
 }
 
 /* Overlay escuro sobre o vídeo (entre vídeo e conteúdo) */
@@ -1183,6 +1409,7 @@ header #site-logo img,
 }
 
 /* Watermark "NOSSA HISTÓRIA" — centralizado na página */
+/* wrap-about-us-style4: "Nossa História" — referência de alinhamento (não alterar) */
 .wrap-about-us-style4 .tf-heading-bg {
     position: relative !important;
     height: 0 !important;
@@ -1201,28 +1428,46 @@ header #site-logo img,
     text-align: center !important;
 }
 
+/* Demais seções com heading-bg-style02: mesmo estilo de "Nossa História" (100px fixo) */
+.wrap-our-chefs-about .tf-heading-bg .heading-bg-style02,
+.wrap-Depoimentoss-about .tf-heading-bg .heading-bg-style02,
+.wrap-shop-details .tf-heading-bg .heading-bg-style02 {
+    font-size: 100px !important;
+    line-height: 110px !important;
+    letter-spacing: 6px !important;
+    position: absolute !important;
+    margin-bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: -20px !important;
+}
+
 /* ============================================
    ABOUT — "BEM-VINDO" CENTRALIZADO + CÍRCULO SVG
    ============================================ */
 
-/* Imagem da seção About — altura controlada */
+/* Imagem da seção About — altura controlada e padding do template zerado */
 .tf-img-about {
     overflow: hidden;
+    padding-right: 0 !important;
 }
 
 .tf-img-about img {
-    max-height: 420px !important;
     width: 100% !important;
+    height: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
     display: block !important;
 }
 
-/* Centralizar watermarks de seção */
+/* Centralizar watermarks de seção - mesmo tamanho de "Nossa História" (100px fixo) */
 .wrap-about-us .tf-heading-bg .heading-bg-style,
 .wrap-Depoimentoss .tf-heading-bg .heading-bg-style,
 .tf-blog .tf-heading-bg .heading-bg-style,
 .wrap-gallery .tf-heading-bg .heading-bg-style {
+    font-size: 100px !important;
+    line-height: 110px !important;
+    letter-spacing: 6px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     text-align: center !important;
@@ -1257,6 +1502,13 @@ header #site-logo img,
 /* Counter section: bege claro */
 .counter-chefs .wrap-counter {
     background-color: #f5f0e8 !important;
+}
+
+/* Ícones e texto da faixa de diferenciais — tamanho reduzido */
+.counter-chefs .box-countter-chefs .countter-box .heading,
+.counter-chefs-about .box-countter-chefs .countter-box .heading {
+    font-size: 0.82em !important;
+    line-height: 1.25 !important;
 }
 
 /* ============================================
@@ -1580,7 +1832,7 @@ header #site-logo img,
 
 /* Subtítulo da loja */
 .ps-shop-subtitle {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 18px;
     color: #666;
     text-align: center;
@@ -1661,6 +1913,9 @@ header #site-logo img,
 .items-shop-related {
     grid-template-columns: repeat(4, 1fr);
 }
+@media (max-width: 1399px) {
+    .items-shop { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 1199px) {
     .items-shop-related { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1670,6 +1925,72 @@ header #site-logo img,
 @media (max-width: 575px) {
     .items-shop,
     .items-shop-related { grid-template-columns: 1fr; }
+}
+
+/* Paginação do cardápio */
+.ps-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.ps-page-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d2e28;
+    background: #fff;
+    border: 1px solid rgba(61, 46, 40, 0.2);
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.ps-page-btn:hover:not(:disabled) {
+    background: #c8a96a;
+    color: #fff;
+    border-color: #c8a96a;
+}
+.ps-page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.ps-page-numbers {
+    display: flex;
+    gap: 8px;
+}
+.ps-page-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d2e28;
+    background: #fff;
+    border: 1px solid rgba(61, 46, 40, 0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 42px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.ps-page-num:hover {
+    background: #f5f5f5;
+}
+.ps-page-num.active {
+    background: #c8a96a;
+    color: #fff;
+    border-color: #c8a96a;
+}
+.ps-page-ellipsis {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d2e28;
+    padding: 10px 8px;
+    display: flex;
+    align-items: center;
 }
 
 /* Botões do card: Ver detalhes + Adicionar ao carrinho */
@@ -2493,17 +2814,9 @@ header #site-logo img,
    CONTATO — TIPOGRAFIA INTER
    ============================================ */
 
-.contact-us .sub-heading,
-.contact-us .infor-text,
-.contact-us .infor-text .title,
-.contact-us .infor-text p,
-.contact-us .form-contact .heading,
-.contact-us .form-contact .text,
 .contact-us .comment-form input,
 .contact-us .comment-form textarea,
-.contact-us .comment-form .tf-button,
-.contact-us .content-contact .heading,
-.tf-section.contact-us .heading {
+.contact-us .comment-form .tf-button {
     font-family: 'Inter', sans-serif !important;
 }
 .contact-us .form-contact .heading,
@@ -2517,6 +2830,22 @@ header #site-logo img,
 .contact-us .comment-form input,
 .contact-us .comment-form textarea {
     font-size: 15px;
+}
+/* Placeholders do formulário de contato em cinza clarinho */
+.contact-us .comment-form input::placeholder,
+.contact-us .comment-form textarea::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+}
+.contact-us .comment-form input::-webkit-input-placeholder,
+.contact-us .comment-form textarea::-webkit-input-placeholder {
+    color: #ccc !important;
+    opacity: 1;
+}
+.contact-us .comment-form input::-moz-placeholder,
+.contact-us .comment-form textarea::-moz-placeholder {
+    color: #ccc !important;
+    opacity: 1;
 }
 
 /* ============================================
@@ -2656,12 +2985,12 @@ header #site-logo img,
 
     /* Marcas d'água gigantes que estouravam a tela */
     .tf-heading-bg .heading-bg-style02,
-    .wrap-about-us-style4 .tf-heading-bg .heading-bg-style02,
-    .tf-heading-bg .heading-bg-style {
+    .heading-bg-style,
+    .heading-bg-style02 {
         font-size: 42px !important;
-        line-height: 46px !important;
+        line-height: 1.1 !important;
         letter-spacing: 2px !important;
-        top: 0 !important;
+        top: -10px !important;
     }
     .tf-heading .tf-title {
         font-size: 28px !important;
@@ -2686,6 +3015,7 @@ header #site-logo img,
     .col-box.col-25,
     .col-box.col-40,
     .col-box.col-45,
+    .col-box.col-50,
     .col-box.col-55,
     .col-box.col-60,
     .col-box.col-75 {
@@ -2729,6 +3059,74 @@ header #site-logo img,
     }
 }
 
+/* ═══════════════════════════════════════════
+   BOTÃO FLUTUANTE WHATSAPP
+   ═══════════════════════════════════════════ */
+.ps-whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.ps-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.ps-whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+    fill: #fff;
+}
+
+.ps-whatsapp-float::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #25D366;
+    animation: whatsapp-pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes whatsapp-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .ps-whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .ps-whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
 /* ============================================
    NOTAS DE AJUSTE
    ============================================
@@ -2741,3 +3139,189 @@ header #site-logo img,
 
    Não altere os seletores CSS abaixo das variáveis.
    ============================================ */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SEÇÕES DE ENTREGA — Regiões Atendidas + Como funciona
+   Usadas em index.html e contact.html
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Seção Regiões Atendidas ────────────────────────────────── */
+.ps-regioes-section {
+    padding: 70px 0 0;
+    background: #fdf5e8;
+    position: relative;
+    overflow: hidden;
+}
+.ps-regioes-section .pricing-menu-item {
+    font-size: 28px;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+
+
+/* ── Seção Como funciona ─────────────────────────────────── */
+.ps-como-section {
+    padding: 70px 0 72px;
+    background: #ffffff;
+}
+
+/* Eyebrow acima do tf-title */
+.ps-como-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #b07838;
+    margin-bottom: 10px;
+}
+
+/* Caixas dos passos */
+.ps-como-section .countter-box h6.heading {
+    font-family: 'Forum', cursive;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #3d2e28;
+    margin-bottom: 8px;
+}
+.ps-como-section .countter-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #7a6a62;
+    margin: 0;
+}
+
+/* Bloco Domingo sob encomenda */
+.ps-como-section .col-md-12.text-center {
+    margin-top: 50px;
+}
+.ps-como-section .col-md-12.text-center .heading {
+    font-family: 'Forum', cursive;
+    font-size: 1.5rem;
+    color: #3d2e28;
+    margin-bottom: 12px;
+}
+.ps-como-section .col-md-12.text-center p {
+    font-size: 15px;
+    color: #7a6a62;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+}
+
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* Títulos de seção */
+    .tf-title {
+        font-size: 32px !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Marcas d'água - reduzir para mobile */
+    .heading-bg-style,
+    .heading-bg-style02 {
+        font-size: 60px !important;
+        line-height: 1 !important;
+    }
+
+    /* Botões - aumentar área de toque */
+    .tf-button {
+        padding: 14px 32px !important;
+        font-size: 14px !important;
+        min-height: 48px;
+    }
+
+    /* Hero title - ajustar para mobile */
+    .ps-hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Caixas dos passos/diferenciais - empilhar */
+    .col-box {
+        margin-bottom: 24px;
+    }
+
+    /* Imagens - garantir responsividade */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Galeria - ajustar grid */
+    .wrap-gallery .row {
+        gap: 16px;
+    }
+}
+
+/* ============================================
+   DEPOIMENTOS — IMAGEM MENOR
+   ============================================ */
+.wrap-Depoimentoss .image-Depoimentoss {
+    max-width: 420px;
+    margin-left: auto;
+}
+.wrap-Depoimentoss .image-Depoimentoss .image {
+    height: 420px !important;
+}
+.wrap-Depoimentoss .image-Depoimentoss .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .wrap-Depoimentoss .image-Depoimentoss {
+        max-width: 100%;
+        margin: 30px auto 0;
+    }
+    .wrap-Depoimentoss .image-Depoimentoss .image {
+        height: 340px !important;
+    }
+}
+
+/* ── Mobile Extra Pequeno (smartphones) ───────────────────── */
+@media (max-width: 480px) {
+    /* Títulos ainda menores */
+    .tf-title {
+        font-size: 28px !important;
+    }
+    
+    /* Marcas d'água proporcionais */
+    .heading-bg-style,
+    .heading-bg-style02 {
+        font-size: 48px !important;
+    }
+    
+    /* Hero title compacto */
+    .ps-hero-title {
+        font-size: 2rem !important;
+    }
+    
+    /* Botões full-width em telas pequenas */
+    .flat-button .tf-button,
+    .ps-regioes-cta-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Padding lateral reduzido */
+    .container-fluid {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    
+    /* Menu items - padding reduzido */
+    .our-menu-item {
+        padding: 18px 24px 12px 24px !important;
+    }
+    
+    /* Pricing - fonte menor */
+    .pricing-menu-item {
+        font-size: 22px !important;
+    }
+}

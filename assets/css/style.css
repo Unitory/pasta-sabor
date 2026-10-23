@@ -1,5 +1,5 @@
 /**
-  * Name: Kababi
+  * Name: Pasta e Sabor
   * Version: 1.0.2
   * Author: Themesflat
   * Author URI: http://www.themesflat.com
@@ -9,7 +9,7 @@
 @import "bootstrap.css";
 @import "swiper-bundle.min.css";
 @import "font-awesome.css";
-@import "kababi-icon.css";
+@import "pasta-sabor-icon.css";
 @import "animate.css";
 @import "flaticon.css";
 @import "magnific-popup.css";
@@ -695,7 +695,7 @@ input[type="submit"]:focus {
 ::-webkit-input-placeholder {
     color: #333333;
     font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     line-height: 32px;
 }
 
@@ -1123,7 +1123,7 @@ h6 a {
     text-align: center;
 }
 .top-bar-content p{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 400;
     font-size: 15px;
     color: #c19977;
@@ -1299,7 +1299,7 @@ h6 a {
     line-height: 35px;
     color: #fff;
     position: relative;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
 }
 
 #main-nav > ul > li.menu-item-has-children:hover>a::after,
@@ -1408,7 +1408,7 @@ h6 a {
     display: inline-block;
     font-size: 17px;
     font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     padding: 5px 20px;
 }
 
@@ -1557,7 +1557,7 @@ h6 a {
 #site-header-inner .header-contact span{
     font-size: 17px;
     line-height: 35px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     color: #fff;
 }
 
@@ -1650,7 +1650,7 @@ h6 a {
 .widget ul li a{
     list-style: none;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 40px;
     color: rgba(255,255,255,0.6);
@@ -1852,7 +1852,7 @@ h6 a {
     background-color: rgba(9,12,15,0.07);
     color: #696969;
     font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-weight: 600;
     border-radius: 5px;
 }
@@ -1906,7 +1906,7 @@ h6 a {
     padding: 14px 30px;
 }
 .form-subscribe-footer input{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     line-height: 32px;
     color: #1D1D1D;
@@ -1959,7 +1959,7 @@ h6 a {
 
 .widget.widget-Newsletters p{
     font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     line-height: 32px;
     margin-bottom: 27px;
     color: rgba(255,255,255,0.6);
@@ -2146,11 +2146,11 @@ h6 a {
     padding: 6px 15px 3px 0;
     background-color: rgba(255, 255, 255, 0);
     border-bottom: 2px solid rgba(255,255,255,0.07);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
 }
 
 .form-subscribe-footer2 input:focus{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     font-size: 15px;
     border-bottom: 2px solid rgba(255,255,255,0.07);
     padding: 6px 15px 3px 0;
@@ -2231,7 +2231,7 @@ h6 a {
 
 .Copyright p{
     font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Forum', cursive;
     line-height: 32px;
 }
 
