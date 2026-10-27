@@ -223,6 +223,10 @@
     .danger-zone h3{color:var(--red)}
     .pw-strength{height:4px;border-radius:2px;margin-top:6px;background:var(--border);overflow:hidden}
     .pw-fill{height:100%;border-radius:2px;transition:width .3s,background .3s}
+    .adm-list{display:flex;flex-direction:column;gap:8px}
+    .adm-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface-2)}
+    .adm-item strong{display:block;font-size:13px}
+    .adm-item span{font-size:12px;color:var(--muted)}
     .msg-row{font-size:12px;margin-top:10px;min-height:18px;padding:0 2px}
     .msg-ok{color:var(--green)}
     .msg-err{color:var(--red)}
@@ -556,22 +560,27 @@
             <div class="msg-row" id="pw-msg"></div>
           </div>
 
-          <!-- SQL / Módulos -->
+          <!-- Acessos ao painel -->
           <div class="cfg-card">
-            <h3>🗃️ SQL — Módulos adicionais</h3>
-            <p>Execute os scripts abaixo no <strong>SQL Editor</strong> do Supabase para ativar os módulos de Pedidos e Estoque.</p>
+            <h3><i class="fas fa-users" style="margin-right:8px;opacity:.7"></i>Acessos ao painel</h3>
+            <p>Crie um login para outra pessoa gerenciar o cardápio e os pedidos. Ela entra por esta mesma página.</p>
+            <div id="adm-list" class="adm-list"><div class="hint">Carregando…</div></div>
             <hr>
-            <div style="margin-bottom:12px">
-              <div style="font-size:12px;font-weight:700;margin-bottom:8px;color:var(--text-2)">1. Tabela de Pedidos</div>
-              <pre class="sql-block" style="font-size:10.5px;max-width:none;margin:0 0 8px" id="sql-orders-cfg"></pre>
-              <button class="btn btn-ghost btn-xs" onclick="copySQL('orders')">Copiar</button>
+            <div class="cfg-row">
+              <label>Nome</label>
+              <input type="text" id="adm-name" placeholder="Nome da pessoa">
             </div>
-            <hr>
-            <div>
-              <div style="font-size:12px;font-weight:700;margin-bottom:8px;color:var(--text-2)">2. Coluna de Estoque (products)</div>
-              <pre class="sql-block" style="font-size:10.5px;max-width:none;margin:0 0 8px" id="sql-stock-cfg"></pre>
-              <button class="btn btn-ghost btn-xs" onclick="copySQL('stock')">Copiar</button>
+            <div class="cfg-row">
+              <label>E-mail</label>
+              <input type="email" id="adm-email" placeholder="pessoa@email.com" autocomplete="off">
             </div>
+            <div class="cfg-row">
+              <label>Senha provisória</label>
+              <input type="text" id="adm-pass" placeholder="Mínimo 6 caracteres" autocomplete="off">
+              <div class="hint">Passe a senha para a pessoa. Ela pode trocar depois em Configurações &gt; Minha conta.</div>
+            </div>
+            <button class="btn btn-primary btn-sm" id="adm-btn" onclick="createAdmin()">Criar acesso</button>
+            <div class="msg-row" id="adm-msg"></div>
           </div>
 
           <!-- Zona de perigo -->
@@ -831,6 +840,58 @@ window.doLogout=async function(){
   document.getElementById('login-screen').style.display='flex';
   setLoginMode('login');
 };
+/* ── Acessos ao painel ───────────────────────────────────────────── */
+// Cliente separado, sem guardar sessão: criar a conta nova não desloga quem está no painel
+var signupDb = window.supabase.createClient(SB_URL, SB_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: 'ps-admin-signup' }
+});
+function escA(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+async function loadAdmins(){
+  var box=document.getElementById('adm-list');
+  if(!box)return;
+  var{data,error}=await db.rpc('admin_list');
+  if(error){box.innerHTML='<div class="hint">Não foi possível carregar a lista. Rode o SQL da etapa 5 no Supabase.</div>';return}
+  box.innerHTML=(data||[]).map(function(a){
+    return '<div class="adm-item"><div><strong>'+escA(a.full_name||a.email)+(a.is_me?' (você)':'')+'</strong><span>'+escA(a.email)+'</span></div>'+
+      (a.is_me?'':'<button class="btn btn-ghost btn-sm" data-email="'+escA(a.email)+'" onclick="revokeAdmin(this.dataset.email)">Remover</button>')+'</div>';
+  }).join('')||'<div class="hint">Nenhum acesso encontrado.</div>';
+}
+window.createAdmin=async function(){
+  var name=document.getElementById('adm-name').value.trim();
+  var email=document.getElementById('adm-email').value.trim();
+  var pass=document.getElementById('adm-pass').value;
+  var msg=document.getElementById('adm-msg');
+  var btn=document.getElementById('adm-btn');
+  msg.className='msg-row';msg.textContent='';
+  if(!email){msg.className='msg-row msg-err';msg.textContent='Informe o e-mail.';return}
+  if(pass.length<6){msg.className='msg-row msg-err';msg.textContent='A senha precisa ter pelo menos 6 caracteres.';return}
+  btn.disabled=true;btn.textContent='Criando…';
+  var{data,error}=await signupDb.auth.signUp({email:email,password:pass,options:{data:{full_name:name}}});
+  if(error&&!/already|registered/i.test(error.message)){
+    btn.disabled=false;btn.textContent='Criar acesso';
+    msg.className='msg-row msg-err';msg.textContent='Erro: '+error.message;return;
+  }
+  // Conta nova ou já existente: dá o acesso de admin pelo e-mail
+  var g=await db.rpc('admin_grant',{p_email:email});
+  btn.disabled=false;btn.textContent='Criar acesso';
+  if(g.error||!g.data){msg.className='msg-row msg-err';msg.textContent='Não foi possível dar o acesso. '+(g.error?g.error.message:'Confira o e-mail.');return}
+  var existed=error||(data&&data.user&&data.user.identities&&data.user.identities.length===0);
+  var needsConfirm=!existed&&data&&!data.session;
+  msg.className='msg-row msg-ok';
+  msg.textContent=existed
+    ? '✓ Esse e-mail já tinha conta e agora tem acesso ao painel (com a senha que já usava).'
+    : '✓ Acesso criado.'+(needsConfirm?' A pessoa precisa confirmar o e-mail antes do primeiro login.':'');
+  document.getElementById('adm-name').value='';document.getElementById('adm-email').value='';document.getElementById('adm-pass').value='';
+  loadAdmins();
+};
+window.revokeAdmin=async function(email){
+  if(!confirm('Remover o acesso de '+email+' ao painel? A conta continua existindo como cliente.'))return;
+  var{data,error}=await db.rpc('admin_revoke',{p_email:email});
+  if(error){toast('Erro: '+error.message,'err');return}
+  toast(data?'✓ Acesso removido.':'E-mail não encontrado.',data?'ok':'err');
+  loadAdmins();
+};
+
 /* Só abre o painel para contas com role 'admin' na tabela profiles */
 async function enterIfAdmin(user,fromLogin){
   var err=document.getElementById('l-err');
@@ -852,8 +913,6 @@ function showApp(user){
   document.getElementById('u-avatar').textContent=(em[0]||'A').toUpperCase();
   document.getElementById('cfg-email-disp').value=em;
   renderSQL('sql-orders',SQL_ORDERS);
-  renderSQL('sql-orders-cfg',SQL_ORDERS);
-  renderSQL('sql-stock-cfg',SQL_STOCK);
   loadProducts();
 }
 db.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(s&&s.user)enterIfAdmin(s.user)});
@@ -872,6 +931,7 @@ window.goTo=function(v){
   if(nEl)nEl.classList.add('active');
   document.getElementById('phead-title').textContent=VIEW_TITLES[v]||v;
   if(v==='pedidos')loadOrders();
+  if(v==='config')loadAdmins();
   if(v==='estoque')renderEstoque();
 };
 goTo('dashboard');

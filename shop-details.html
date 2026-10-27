@@ -32,7 +32,14 @@
         .ps-loading .product-details .row,
         .ps-loading .wrap-shop-details { visibility: hidden; }
     </style>
-</head>
+
+    <!-- SEO: Canonical URL -->
+    <link rel="canonical" href="https://pastasabor.vercel.app/shop-details.html">
+
+    <!-- SEO: Alternate para idiomas -->
+    <link rel="alternate" hreflang="pt-br" href="https://pastasabor.vercel.app/shop-details.html">
+
+
 
 <body class="header-fixed2 ps-loading">
 	<!-- Preloader -->
@@ -396,6 +403,8 @@ document.addEventListener('click', function (e) {
 <!-- Produto carregado do Supabase pelo ?id= -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="assets/js/product-details.js?v=20261027000001"></script>
-</body>
+<!-- SEO: Structured Data (JSON-LD) -->
+<script src="assets/js/structured-data.js"></script>
+
 </html>
 
