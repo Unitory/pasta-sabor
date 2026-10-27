@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Pasta & Sabor Custom Styles -->
-    <link rel="stylesheet" type="text/css" href="assets/css/pasta-sabor-custom.css?v=20260727000038">
+    <link rel="stylesheet" type="text/css" href="assets/css/pasta-sabor-custom.css?v=20261027000002">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/logo/logo.jpeg">
@@ -129,13 +129,20 @@
                     <!-- Painel de confirmação pós-envio -->
                     <div id="order-confirmed" style="display:none;">
                         <div class="ps-order-confirmed">
-                            <div class="ps-oc-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="ps-oc-icon"><i class="fas fa-check"></i></div>
                             <h2 class="ps-oc-title">Pedido enviado!</h2>
-                            <p class="ps-oc-sub">Sua mensagem foi para o WhatsApp.<br>Em instantes confirmamos pelo <strong>(14) 99639-4451</strong>.</p>
+                            <p class="ps-oc-sub">Abrimos o WhatsApp com a sua mensagem pronta.<br><strong>Toque em enviar por lá</strong> para confirmar o pedido.</p>
                             <div id="oc-summary" class="ps-oc-summary"></div>
-                            <a href="our-menu.html" class="ps-oc-btn">
-                                <i class="fas fa-utensils"></i> Ver cardápio
-                            </a>
+                            <div class="ps-oc-actions">
+                                <a href="#" id="oc-whatsapp" class="ps-oc-btn ps-oc-btn-primary" target="_blank" rel="noopener">
+                                    <i class="fab fa-whatsapp"></i> Abrir o WhatsApp de novo
+                                </a>
+                                <a href="our-menu.html" class="ps-oc-btn ps-oc-btn-ghost">
+                                    <i class="fas fa-utensils"></i> Voltar ao cardápio
+                                </a>
+                            </div>
+                            <p id="oc-account" class="ps-oc-account" style="display:none;"></p>
+                            <p class="ps-oc-help">Dúvidas? Fale com a gente pelo <strong>(14) 99639-4451</strong>.</p>
                         </div>
                     </div>
 
@@ -181,6 +188,8 @@
                                 <div class="text">Preencha seus dados para finalizar</div>
 
                                 <form id="checkout-form" class="ps-checkout-form">
+                                    <!-- Login opcional (preenchido pelo cart-page.js) -->
+                                    <div id="ps-account-box" class="ps-account-box" style="display:none;"></div>
                                     <div class="ps-payment-block ps-delivery-block">
                                         <h5 class="ps-payment-title">Como você quer receber? <span>*</span></h5>
                                         <div class="ps-choice-group">
@@ -358,6 +367,6 @@
 <!-- Supabase (registro do pedido) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <!-- Lógica da página de carrinho -->
-<script src="assets/js/cart-page.js?v=20261027000001"></script>
+<script src="assets/js/cart-page.js?v=20261027000002"></script>
 </body>
 </html>

@@ -263,10 +263,22 @@
     el.style.color = ok ? '#166534' : '#991b1b';
   }
 
+  // Para onde ir depois de entrar (ex.: login.html?next=cart volta ao carrinho)
+  var NEXT_PAGE = (function () {
+    var n = new URLSearchParams(window.location.search).get('next') || '';
+    return /^[a-z0-9-]+(\.html)?$/i.test(n) ? n : 'minha-conta.html';
+  })();
+  if (NEXT_PAGE !== 'minha-conta.html') {
+    document.querySelectorAll('a[href="login.html"], a[href="cadastro.html"]').forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (h === 'login.html' || h === 'cadastro.html') a.setAttribute('href', h + '?next=' + encodeURIComponent(NEXT_PAGE));
+    });
+  }
+
   // Redireciona se já estiver logado
   db.auth.getSession().then(function (r) {
     if (r.data && r.data.session) {
-      window.location.href = 'minha-conta.html';
+      window.location.href = NEXT_PAGE;
     }
   });
 
@@ -286,7 +298,7 @@
       return;
     }
     showMsg('login-msg', 'Login realizado! Redirecionando…', true);
-    setTimeout(function () { window.location.href = 'minha-conta.html'; }, 800);
+    setTimeout(function () { window.location.href = NEXT_PAGE; }, 800);
   });
 
   // Painel recuperação

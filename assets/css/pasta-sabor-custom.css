@@ -2593,7 +2593,7 @@ header #site-logo img,
 /* Cards de escolha (entrega/retirada e pagamento) */
 .ps-choice-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax evita o card vazar da coluna */
     gap: 12px;
 }
 .ps-choice {
@@ -2650,7 +2650,7 @@ header #site-logo img,
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     color: rgba(61, 46, 40, 0.55);
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -3326,4 +3326,225 @@ header #site-logo img,
     .pricing-menu-item {
         font-size: 22px !important;
     }
+}
+
+/* ============================================
+   CARRINHO: LOGIN OPCIONAL NO FORMULÁRIO
+   ============================================ */
+.ps-account-box {
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #faf5ed;
+    border: 1.5px solid rgba(179, 146, 95, 0.35);
+    border-radius: 10px;
+    padding: 15px 18px;
+    margin-bottom: 22px;
+}
+.ps-account-box > i {
+    color: #b3925f;
+    font-size: 17px;
+    margin-top: 2px;
+}
+.ps-account-box strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--marca-escuro);
+    margin-bottom: 3px;
+}
+.ps-account-box p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--marca-medio);
+    margin: 0;
+}
+.ps-account-box p a {
+    color: #b3925f;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.ps-account-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+.ps-account-btn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: #b3925f;
+    border: 1.5px solid #b3925f;
+    color: #fff !important;
+    transition: background .2s, color .2s;
+}
+.ps-account-btn:hover { background: var(--marca-escuro); border-color: var(--marca-escuro); }
+.ps-account-btn--ghost {
+    background: transparent;
+    color: var(--marca-escuro) !important;
+    border-color: rgba(61, 46, 40, 0.25);
+}
+.ps-account-btn--ghost:hover { background: #fff; color: var(--marca-escuro) !important; border-color: #b3925f; }
+.ps-account-box--logged { background: #f3f8f1; border-color: rgba(22, 101, 52, 0.25); }
+.ps-account-box--logged > i { color: #3f7a4f; }
+
+/* ============================================
+   CARRINHO: TELA DE PEDIDO ENVIADO
+   ============================================ */
+#order-confirmed { padding: 10px 0 40px; }
+.ps-order-confirmed {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+.ps-oc-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 6px;
+    border-radius: 50%;
+    background: #b3925f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 0 0 8px rgba(179, 146, 95, 0.15);
+}
+.ps-oc-title {
+    font-size: 58px;
+    line-height: 1.2;
+    margin: 14px 0 6px;
+}
+.ps-oc-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--marca-medio);
+    margin: 0 0 28px;
+}
+.ps-oc-sub strong { color: var(--marca-escuro); }
+.ps-oc-summary {
+    line-height: 1.4;
+    text-align: left;
+    background: #fff;
+    border: 1.5px solid rgba(61, 46, 40, 0.12);
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 10px 30px rgba(61, 46, 40, 0.06);
+}
+.ps-oc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid rgba(61, 46, 40, 0.1);
+}
+.ps-oc-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--marca-escuro);
+}
+.ps-oc-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a6d3f;
+    background: #faf5ed;
+    border-radius: 20px;
+    padding: 5px 12px;
+    white-space: nowrap;
+}
+.ps-oc-items {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+}
+.ps-oc-items li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(61, 46, 40, 0.12);
+    font-size: 15px;
+    color: var(--marca-escuro);
+}
+.ps-oc-items li:last-child { border-bottom: 0; }
+.ps-oc-qty {
+    flex: 0 0 auto;
+    min-width: 30px;
+    font-weight: 700;
+    color: #b3925f;
+}
+.ps-oc-name { flex: 1 1 auto; }
+.ps-oc-price { flex: 0 0 auto; font-weight: 600; white-space: nowrap; }
+.ps-oc-totals {
+    border-top: 1.5px solid rgba(61, 46, 40, 0.1);
+    padding-top: 12px;
+}
+.ps-oc-totals > div {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--marca-medio);
+    padding: 4px 0;
+}
+.ps-oc-totals .ps-oc-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--marca-escuro);
+    padding: 8px 0 6px;
+}
+.ps-oc-total small { font-size: 12px; font-weight: 500; color: var(--marca-medio); }
+.ps-oc-pay { border-top: 1px dashed rgba(61, 46, 40, 0.12); margin-top: 4px; padding-top: 10px !important; }
+.ps-oc-pay span:last-child { font-weight: 600; color: var(--marca-escuro); }
+.ps-oc-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+.ps-oc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    transition: background .2s, border-color .2s, color .2s;
+}
+.ps-oc-btn-primary { background: #25d366; color: #fff !important; }
+.ps-oc-btn-primary:hover { background: #1ebe5b; }
+.ps-oc-btn-ghost {
+    background: transparent;
+    color: var(--marca-escuro) !important;
+    border-color: rgba(61, 46, 40, 0.25);
+}
+.ps-oc-btn-ghost:hover { border-color: #b3925f; background: #faf5ed; }
+.ps-oc-account,
+.ps-oc-help {
+    font-size: 14px;
+    color: var(--marca-medio);
+    margin: 18px 0 0;
+}
+.ps-oc-account a { color: #b3925f; font-weight: 600; text-decoration: underline; }
+.ps-oc-help { font-size: 13px; margin-top: 10px; }
+
+@media (max-width: 576px) {
+    .ps-oc-title { font-size: 46px; }
+    .ps-oc-summary { padding: 18px 16px; }
+    .ps-oc-items li { font-size: 14px; }
+    .ps-oc-actions { flex-direction: column; }
+    .ps-oc-btn { justify-content: center; width: 100%; }
 }

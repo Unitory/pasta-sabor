@@ -158,7 +158,10 @@
      * Mostra o estado de carrinho vazio
      */
     function showEmptyCart() {
-        document.getElementById('empty-cart').style.display = 'block';
+        // Depois de enviar o pedido, a tela de confirmação ocupa o lugar do aviso de carrinho vazio
+        var confirmed = document.getElementById('order-confirmed');
+        var afterOrder = confirmed && confirmed.style.display !== 'none';
+        document.getElementById('empty-cart').style.display = afterOrder ? 'none' : 'block';
         document.getElementById('cart-content').style.display = 'none';
     }
 
@@ -261,6 +264,62 @@
         } catch (error) {
             console.error('Erro ao salvar dados do cliente:', error);
         }
+    }
+
+    // ========================================
+    // CONTA DO CLIENTE (login opcional)
+    // ========================================
+
+    var currentUser = null;
+
+    function escHtml(s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    /** Preenche o campo só se estiver vazio */
+    function fillIfEmpty(id, value) {
+        var el = document.getElementById(id);
+        if (el && !el.value && value) el.value = value;
+    }
+
+    /**
+     * Mostra no topo do formulário:
+     *  - sem login: convite para entrar ou criar conta (volta ao carrinho depois)
+     *  - logado: saudação e dados preenchidos
+     */
+    async function initAccountBox() {
+        var box = document.getElementById('ps-account-box');
+        if (!box || !db) return;
+        var session = null;
+        try {
+            var r = await db.auth.getSession();
+            session = r.data && r.data.session;
+        } catch (err) { /* segue sem login */ }
+
+        if (session && session.user) {
+            currentUser = session.user;
+            var meta = currentUser.user_metadata || {};
+            var first = (meta.full_name || '').trim().split(' ')[0] || currentUser.email;
+            fillIfEmpty('customer-name', meta.full_name);
+            fillIfEmpty('customer-phone', meta.phone);
+            box.className = 'ps-account-box ps-account-box--logged';
+            box.innerHTML =
+                '<i class="fas fa-user-check"></i>' +
+                '<div><strong>Olá, ' + escHtml(first) + '!</strong>' +
+                '<p>Este pedido fica salvo em <a href="minha-conta.html">Meus Pedidos</a>.</p></div>';
+        } else {
+            box.className = 'ps-account-box';
+            box.innerHTML =
+                '<i class="far fa-user"></i>' +
+                '<div><strong>Já é cliente?</strong>' +
+                '<p>Entre para preencher seus dados e acompanhar seus pedidos. Se preferir, siga sem conta.</p>' +
+                '<div class="ps-account-actions">' +
+                    '<a href="login.html?next=cart" class="ps-account-btn">Entrar</a>' +
+                    '<a href="cadastro.html?next=cart" class="ps-account-btn ps-account-btn--ghost">Criar conta</a>' +
+                '</div></div>';
+        }
+        box.style.display = 'flex';
     }
 
     // ========================================
@@ -438,7 +497,7 @@
         var whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
 
         // Mostrar painel de confirmação e limpar carrinho
-        showOrderConfirmed(items, formData, orderId);
+        showOrderConfirmed(items, formData, orderId, whatsappUrl);
         clearCart();
 
         if (waWindow && !waWindow.closed) {
@@ -453,7 +512,7 @@
      * @param {Array} items - Itens do carrinho
      * @param {Object} formData - Dados do formulário
      */
-    function showOrderConfirmed(items, formData, orderId) {
+    function showOrderConfirmed(items, formData, orderId, whatsappUrl) {
         var cartContent = document.getElementById('cart-content');
         var emptyCart = document.getElementById('empty-cart');
         var confirmed = document.getElementById('order-confirmed');
@@ -462,29 +521,41 @@
         if (emptyCart) emptyCart.style.display = 'none';
         if (!confirmed) return;
 
-        // Montar resumo dos itens
+        var entrega = formData.delivery === 'entrega';
+        var fee = entrega ? DELIVERY_FEE : 0;
+        var subtotal = getCartTotal();
+        var hasConsulte = items.some(function (i) { return !(i.price > 0); });
+
         var summaryEl = document.getElementById('oc-summary');
         if (summaryEl) {
-            var entrega = formData.delivery === 'entrega';
-            var fee = entrega ? DELIVERY_FEE : 0;
-            var subtotal = getCartTotal();
-            var html = orderId
-                ? '<div class="ps-oc-summary-item"><strong>Pedido #' + orderId + '</strong><span></span></div>'
-                : '';
-            items.forEach(function(item) {
-                var sub = item.price > 0
-                    ? 'R$ ' + (item.price * item.qty).toFixed(2).replace('.', ',')
-                    : 'a combinar';
-                html += '<div class="ps-oc-summary-item">' +
-                    '<span><span class="qty">' + item.qty + 'x</span>' + item.name + '</span>' +
-                    '<span>' + sub + '</span>' +
-                    '</div>';
+            var html = '<div class="ps-oc-head">' +
+                '<span class="ps-oc-number">' + (orderId ? 'Pedido #' + orderId : 'Seu pedido') + '</span>' +
+                '<span class="ps-oc-tag"><i class="fas ' + (entrega ? 'fa-motorcycle' : 'fa-store') + '"></i> ' +
+                    (entrega ? 'Entrega' : 'Retirada') + '</span>' +
+                '</div><ul class="ps-oc-items">';
+            items.forEach(function (item) {
+                var sub = item.price > 0 ? brl(item.price * item.qty) : 'a combinar';
+                html += '<li><span class="ps-oc-qty">' + item.qty + 'x</span>' +
+                    '<span class="ps-oc-name">' + escHtml(item.name) + '</span>' +
+                    '<span class="ps-oc-price">' + sub + '</span></li>';
             });
-            html += '<div class="ps-oc-summary-total">' +
-                '<span>' + (entrega ? 'Total (com entrega)' : 'Total (retirada)') + '</span>' +
-                '<span>R$ ' + (subtotal + fee).toFixed(2).replace('.', ',') + '</span>' +
+            html += '</ul><div class="ps-oc-totals">' +
+                '<div><span>Subtotal</span><span>' + brl(subtotal) + '</span></div>' +
+                '<div><span>' + (entrega ? 'Entrega' : 'Retirada') + '</span><span>' + (fee > 0 ? brl(fee) : 'Grátis') + '</span></div>' +
+                '<div class="ps-oc-total"><span>Total</span><span>' + brl(subtotal + fee) +
+                    (hasConsulte ? ' <small>+ itens a combinar</small>' : '') + '</span></div>' +
+                '<div class="ps-oc-pay"><span>Pagamento</span><span>' + escHtml(formData.payment) + '</span></div>' +
                 '</div>';
             summaryEl.innerHTML = html;
+        }
+
+        var waBtn = document.getElementById('oc-whatsapp');
+        if (waBtn && whatsappUrl) waBtn.href = whatsappUrl;
+
+        var acc = document.getElementById('oc-account');
+        if (acc && currentUser) {
+            acc.innerHTML = 'Acompanhe o status em <a href="minha-conta.html">Meus Pedidos</a>.';
+            acc.style.display = 'block';
         }
 
         confirmed.style.display = 'block';
@@ -504,6 +575,9 @@
 
         // Carregar dados salvos do cliente
         loadCustomerData();
+
+        // Login opcional no topo do formulário
+        initAccountBox();
 
         // Configurar evento de submit do formulário
         const checkoutForm = document.getElementById('checkout-form');
