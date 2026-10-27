@@ -2,5 +2,17 @@
   "buildCommand": "echo 'No build required'",
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/our-shop",
+      "destination": "/our-menu",
+      "permanent": true
+    },
+    {
+      "source": "/our-shop.html",
+      "destination": "/our-menu",
+      "permanent": true
+    }
+  ]
 }

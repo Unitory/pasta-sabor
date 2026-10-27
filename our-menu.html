@@ -288,7 +288,9 @@
 
     function priceDisplay(price) {
         if (!price || price <= 0) return 'Consulte';
-        return 'R$ ' + price.toFixed(0).replace('.', ',');
+        // Inteiro: "R$ 20" | com centavos: "R$ 18,50"
+        var v = Number(price);
+        return 'R$ ' + (Number.isInteger(v) ? v : v.toFixed(2).replace('.', ','));
     }
 
     function resolveImage(url) {
@@ -444,6 +446,13 @@
                 apply();
             });
         });
+
+        /* categoria vinda do link (ex.: our-menu.html?cat=talharim) */
+        var urlCat = new URLSearchParams(window.location.search).get('cat');
+        if (urlCat) {
+            var catLink = document.querySelector('.ps-category-list a[data-category="' + urlCat.replace(/[^a-z0-9-]/gi, '') + '"]');
+            if (catLink) catLink.click();
+        }
 
         /* busca */
         var search = document.querySelector('.widget_search .search');

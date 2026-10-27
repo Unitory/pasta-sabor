@@ -611,6 +611,7 @@
       <div class="df"><label>Nome do produto</label><input type="text" id="dr-name"></div>
       <div class="df"><label>Preço (R$)</label><input type="number" id="dr-price" step="0.01" min="0"><div class="hint">Deixe 0 para exibir "Consulte" no cardápio.</div></div>
       <div class="df"><label>Descrição</label><textarea id="dr-desc" placeholder="Descrição opcional…"></textarea></div>
+      <div class="df"><label>Modo de preparo e conservação</label><textarea id="dr-prep" rows="6" placeholder="Deixe vazio para usar o texto padrão da categoria."></textarea><div class="hint">Aparece na página do produto. Vazio = texto padrão da categoria.</div></div>
       <hr class="dhr">
       <div class="tgl-row">
         <div class="info"><div class="l">Produto ativo</div><div class="s">Visível no cardápio público</div></div>
@@ -794,11 +795,6 @@ window.setLoginMode=function(mode){
     mTitle.style.display='block';mTitle.textContent='Recuperar senha';
     passWrap.style.display='none';pass2Wrap.style.display='none';pass3Wrap.style.display='none';
     btn.textContent='Enviar link de recuperação';btn.onclick=window.doForgot;
-  } else if(mode==='signup'){
-    back.style.display='block';links.style.display='none';
-    mTitle.style.display='block';mTitle.textContent='Criar conta';
-    passWrap.style.display='none';pass2Wrap.style.display='';pass3Wrap.style.display='';
-    btn.textContent='Criar conta';btn.onclick=window.doSignup;
   }
 };
 
@@ -811,7 +807,8 @@ window.doLogin=async function(){
   err.textContent='';btn.disabled=true;btn.textContent='Entrando…';
   var{data,error}=await db.auth.signInWithPassword({email,password:pass});
   if(error){err.textContent='E-mail ou senha incorretos.';btn.disabled=false;btn.textContent='Entrar';return}
-  showApp(data.user);
+  var ok=await enterIfAdmin(data.user,true);
+  if(!ok){btn.disabled=false;btn.textContent='Entrar'}
 };
 
 window.doForgot=async function(){
@@ -828,31 +825,25 @@ window.doForgot=async function(){
   suc.textContent='Link enviado! Verifique sua caixa de entrada.';
 };
 
-window.doSignup=async function(){
-  var email=document.getElementById('l-email').value.trim();
-  var pass=document.getElementById('l-pass2').value;
-  var pass2=document.getElementById('l-pass3').value;
-  var btn=document.getElementById('l-btn');
-  var err=document.getElementById('l-err');
-  var suc=document.getElementById('l-suc');
-  err.textContent='';suc.style.display='none';
-  if(!email){err.textContent='Informe o e-mail.';return}
-  if(pass.length<6){err.textContent='A senha deve ter pelo menos 6 caracteres.';return}
-  if(pass!==pass2){err.textContent='As senhas não coincidem.';return}
-  btn.disabled=true;btn.textContent='Criando conta…';
-  var{error}=await db.auth.signUp({email,password:pass});
-  btn.disabled=false;btn.textContent='Criar conta';
-  if(error){err.textContent='Erro: '+error.message;return}
-  suc.style.display='block';
-  suc.textContent='Conta criada! Verifique o e-mail para confirmar o cadastro.';
-};
-
 window.doLogout=async function(){
   await db.auth.signOut();
   document.getElementById('app').classList.remove('visible');
   document.getElementById('login-screen').style.display='flex';
   setLoginMode('login');
 };
+/* Só abre o painel para contas com role 'admin' na tabela profiles */
+async function enterIfAdmin(user,fromLogin){
+  var err=document.getElementById('l-err');
+  var{data,error}=await db.from('profiles').select('role').eq('id',user.id).maybeSingle();
+  if(error||!data||data.role!=='admin'){
+    // Só desloga se a pessoa acabou de entrar por aqui (cliente logado no site continua logado lá)
+    if(fromLogin)await db.auth.signOut();
+    err.textContent=error?'Não foi possível verificar o acesso. Tente novamente.':'Esta conta não tem acesso ao painel.';
+    return false;
+  }
+  showApp(user);
+  return true;
+}
 function showApp(user){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').classList.add('visible');
@@ -865,9 +856,8 @@ function showApp(user){
   renderSQL('sql-stock-cfg',SQL_STOCK);
   loadProducts();
 }
-db.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(s&&s.user)showApp(s.user)});
+db.auth.getSession().then(function(r){var s=r.data&&r.data.session;if(s&&s.user)enterIfAdmin(s.user)});
 document.getElementById('l-pass').addEventListener('keydown',function(e){if(e.key==='Enter')window.doLogin()});
-document.getElementById('l-pass3').addEventListener('keydown',function(e){if(e.key==='Enter')window.doSignup()});
 document.getElementById('l-email').addEventListener('keydown',function(e){if(e.key==='Enter'){if(lMode==='forgot')window.doForgot();else if(lMode==='login')document.getElementById('l-pass').focus();}});
 
 /* ── Navigation ──────────────────────────────────────────────────── */
@@ -1161,6 +1151,7 @@ window.openDrawer=function(id){
   document.getElementById('dr-name').value=p.name||'';
   document.getElementById('dr-price').value=p.price||0;
   document.getElementById('dr-desc').value=p.description||'';
+  document.getElementById('dr-prep').value=p.prep_text||'';
   document.getElementById('dr-active').checked=!!p.active;
   document.getElementById('d-overlay').classList.add('open');
 };
@@ -1173,14 +1164,15 @@ window.saveProduct=async function(){
   var name=document.getElementById('dr-name').value.trim();
   var price=parseFloat(document.getElementById('dr-price').value)||0;
   var desc=document.getElementById('dr-desc').value.trim();
+  var prep=document.getElementById('dr-prep').value.trim();
   var active=document.getElementById('dr-active').checked;
   if(!name){toast('O nome não pode ficar vazio.','err');return}
   var btn=document.getElementById('dr-save');btn.disabled=true;btn.textContent='Salvando…';
-  var{error}=await db.from('products').update({name,price,description:desc,active}).eq('id',editingId);
+  var{error}=await db.from('products').update({name,price,description:desc,prep_text:prep,active}).eq('id',editingId);
   btn.disabled=false;btn.textContent='Salvar alterações';
   if(error){toast('Erro: '+error.message,'err');return}
   var p=allProducts.find(function(x){return x.id===editingId});
-  if(p){p.name=name;p.price=price;p.description=desc;p.active=active}
+  if(p){p.name=name;p.price=price;p.description=desc;p.prep_text=prep;p.active=active}
   var row=document.getElementById('row-'+editingId);
   if(row&&p){row.parentNode.replaceChild(makeProductRow(p),row)}
   buildDashboard();

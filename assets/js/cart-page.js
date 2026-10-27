@@ -9,6 +9,49 @@
     // Configuração
     const CUSTOMER_STORAGE_KEY = 'pastaesabor_customer';
 
+    // WhatsApp que recebe os pedidos (só números, com 55 + DDD)
+    // TESTE: número da Vick. Trocar pelo da loja (5514996394451) antes de lançar.
+    const WHATSAPP_NUMBER = '5514998042458';
+
+    // Supabase: registra o pedido e gera o número dele
+    const SUPABASE_URL = 'https://ofwpocthtfssffyxagve.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9md3BvY3RodGZzc2ZmeXhhZ3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxMzgzNDgsImV4cCI6MjEwNTcxNDM0OH0.OOUdG9Pem_gwTkbH6Ke9o28E_C8Ua97MwfW5bqMtr5k';
+    const db = (window.supabase && window.supabase.createClient)
+        ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        : null;
+
+    /**
+     * Registra o pedido no Supabase e devolve o número dele.
+     * Se falhar ou demorar mais de 5s, devolve null e o WhatsApp abre mesmo assim.
+     */
+    async function saveOrder(items, formData) {
+        if (!db) return null;
+        try {
+            const call = db.rpc('place_order', {
+                p_customer_name: formData.name,
+                p_customer_phone: formData.phone,
+                p_items: items.map(function (i) { return { id: i.id, qty: i.qty }; }),
+                p_delivery: formData.delivery === 'entrega',
+                p_address: formData.address,
+                p_reference: formData.reference,
+                p_payment: formData.payment,
+                p_notes: formData.notes
+            });
+            const timeout = new Promise(function (resolve) {
+                setTimeout(function () { resolve({ data: null, error: 'timeout' }); }, 5000);
+            });
+            const res = await Promise.race([call, timeout]);
+            if (res.error) {
+                console.warn('Pedido não registrado no Supabase:', res.error);
+                return null;
+            }
+            return res.data;
+        } catch (err) {
+            console.warn('Pedido não registrado no Supabase:', err);
+            return null;
+        }
+    }
+
     // ========================================
     // RENDERIZAÇÃO DO CARRINHO
     // ========================================
@@ -293,14 +336,16 @@
      * @param {Object} formData - Dados do formulário
      * @returns {string} Mensagem formatada
      */
-    function buildWhatsAppMessage(formData) {
+    function buildWhatsAppMessage(formData, orderId) {
         const items = getCartItems();
         const subtotal = getCartTotal();
         const entrega = formData.delivery === 'entrega';
         const fee = entrega ? DELIVERY_FEE : 0;
 
         // Cabeçalho
-        let message = 'Olá! Quero confirmar meu pedido:\n\n';
+        let message = orderId
+            ? `Olá! Quero confirmar meu pedido *#${orderId}*:\n\n`
+            : 'Olá! Quero confirmar meu pedido:\n\n';
 
         // Lista de itens
         message += '*Itens do Pedido:*\n';
@@ -349,7 +394,7 @@
      * Finaliza o pedido e abre WhatsApp
      * @param {Event} e - Evento de submit
      */
-    function handleCheckout(e) {
+    async function handleCheckout(e) {
         e.preventDefault();
 
         // Verificar se há itens no carrinho
@@ -383,14 +428,24 @@
             btn.innerHTML = '<i class="fas fa-check"></i> Enviando...';
         }
 
-        // Abrir WhatsApp
-        var message = buildWhatsAppMessage(formData);
+        // Abre a aba já no clique (senão o navegador bloqueia o pop-up
+        // por causa da espera do Supabase) e depois manda para o WhatsApp
+        var waWindow = window.open('', '_blank');
+
+        // Registrar no Supabase e montar a mensagem com o número do pedido
+        var orderId = await saveOrder(items, formData);
+        var message = buildWhatsAppMessage(formData, orderId);
         var whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
-        window.open(whatsappUrl, '_blank');
 
         // Mostrar painel de confirmação e limpar carrinho
-        showOrderConfirmed(items, formData);
+        showOrderConfirmed(items, formData, orderId);
         clearCart();
+
+        if (waWindow && !waWindow.closed) {
+            waWindow.location.href = whatsappUrl;
+        } else {
+            window.location.href = whatsappUrl;
+        }
     }
 
     /**
@@ -398,7 +453,7 @@
      * @param {Array} items - Itens do carrinho
      * @param {Object} formData - Dados do formulário
      */
-    function showOrderConfirmed(items, formData) {
+    function showOrderConfirmed(items, formData, orderId) {
         var cartContent = document.getElementById('cart-content');
         var emptyCart = document.getElementById('empty-cart');
         var confirmed = document.getElementById('order-confirmed');
@@ -413,7 +468,9 @@
             var entrega = formData.delivery === 'entrega';
             var fee = entrega ? DELIVERY_FEE : 0;
             var subtotal = getCartTotal();
-            var html = '';
+            var html = orderId
+                ? '<div class="ps-oc-summary-item"><strong>Pedido #' + orderId + '</strong><span></span></div>'
+                : '';
             items.forEach(function(item) {
                 var sub = item.price > 0
                     ? 'R$ ' + (item.price * item.qty).toFixed(2).replace('.', ',')

@@ -27,9 +27,14 @@
     <link rel="shortcut icon" href="assets/logo/logo.jpeg">
     <link rel="apple-touch-icon-precomposed" href="assets/icon/icon.png">
 
+    <style>
+        /* Esconde o conteúdo fixo do template até o produto carregar do Supabase */
+        .ps-loading .product-details .row,
+        .ps-loading .wrap-shop-details { visibility: hidden; }
+    </style>
 </head>
 
-<body class="header-fixed2">
+<body class="header-fixed2 ps-loading">
 	<!-- Preloader -->
 	<div id="loading-overlay">
 		<div class="loader"></div>
@@ -115,9 +120,9 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="our-shop.html" class="ps-back-to-shop">
+							<a href="our-menu.html" class="ps-back-to-shop">
 								<i class="fas fa-arrow-left"></i>
-								<span>Voltar para a loja</span>
+								<span>Voltar para o cardápio</span>
 							</a>
 						</div>
 						<div class="col-md-6">
@@ -388,6 +393,9 @@ document.addEventListener('click', function (e) {
 	});
 })();
 </script>
+<!-- Produto carregado do Supabase pelo ?id= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/js/product-details.js?v=20261027000001"></script>
 </body>
 </html>
 
