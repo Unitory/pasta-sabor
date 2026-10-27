@@ -3207,7 +3207,7 @@ header #site-logo img,
 .ps-como-section .col-md-12.text-center p {
     font-size: 15px;
     color: #7a6a62;
-    max-width: 600px;
+    max-width: none; /* frase em uma linha só no desktop (no celular quebra naturalmente) */
     margin: 0 auto 24px;
     line-height: 1.6;
 }
