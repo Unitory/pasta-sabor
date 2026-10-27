@@ -1,0 +1,44 @@
+# robots.txt - Pasta & Sabor
+# https://pastasabor.vercel.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Bloquear áreas administrativas e de autenticação
+Disallow: /admin/
+Disallow: /login.html
+Disallow: /cadastro.html
+Disallow: /minha-conta.html
+Disallow: /cart.html
+
+# Bloquear arquivos temporários e backups
+Disallow: /backup-*/
+Disallow: /*.bak$
+Disallow: /*.tmp$
+
+# Permitir recursos importantes
+Allow: /assets/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
+Allow: /assets/loja/
+Allow: /assets/logo/
+
+# Sitemap
+Sitemap: https://pastasabor.vercel.app/sitemap.xml
+
+# Configurações específicas para bots de redes sociais
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+User-agent: WhatsApp
+Allow: /
+
+# Configurações para Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /assets/loja/
+Allow: /assets/logo/
