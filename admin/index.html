@@ -40,7 +40,7 @@
     #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
     .lcard{background:var(--surface);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.12);padding:44px 40px;width:100%;max-width:380px}
     .llogo{text-align:center;margin-bottom:32px}
-    .llogo span{font-size:38px;display:block;margin-bottom:8px}
+    .llogo img{width:120px;height:auto;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto}
     .llogo h1{font-size:20px;font-weight:700;color:var(--accent)}
     .llogo p{font-size:12px;color:var(--muted);margin-top:2px}
     .fld{margin-bottom:14px}
@@ -312,7 +312,7 @@
 <div id="login-screen">
   <div class="lcard">
     <div class="llogo">
-      <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-3.5-3.36-4.86-7.02-4.86-3.65 0-7.01 1.36-7.01 4.86v5h14.03v-5z"/></svg></span>
+      <img src="../assets/logo/logo-sfundo.png" alt="Pasta & Sabor">
       <h1>Pasta & Sabor</h1>
       <p>Painel administrativo</p>
     </div>
@@ -340,7 +340,7 @@
     <!-- Links de modo (só no login) -->
     <div class="l-links" id="l-links">
       <button class="l-link" onclick="setLoginMode('forgot')">Esqueci a senha</button>
-      <!-- Criar conta desabilitado: novos admins devem ser criados via Supabase -->
+      <button class="l-link" onclick="setLoginMode('signup')">Criar conta</button>
     </div>
   </div>
 </div>
@@ -804,6 +804,11 @@ window.setLoginMode=function(mode){
     mTitle.style.display='block';mTitle.textContent='Recuperar senha';
     passWrap.style.display='none';pass2Wrap.style.display='none';pass3Wrap.style.display='none';
     btn.textContent='Enviar link de recuperação';btn.onclick=window.doForgot;
+  } else if(mode==='signup'){
+    back.style.display='block';links.style.display='none';
+    mTitle.style.display='block';mTitle.textContent='Criar nova conta de administrador';
+    passWrap.style.display='none';pass2Wrap.style.display='';pass3Wrap.style.display='';
+    btn.textContent='Criar conta';btn.onclick=window.doSignup;
   }
 };
 
@@ -832,6 +837,43 @@ window.doForgot=async function(){
   if(error){err.textContent='Erro ao enviar. Verifique o e-mail.';return}
   suc.style.display='block';
   suc.textContent='Link enviado! Verifique sua caixa de entrada.';
+};
+
+window.doSignup=async function(){
+  var email=document.getElementById('l-email').value.trim();
+  var pass=document.getElementById('l-pass2').value;
+  var passConfirm=document.getElementById('l-pass3').value;
+  var btn=document.getElementById('l-btn');
+  var err=document.getElementById('l-err');
+  var suc=document.getElementById('l-suc');
+  err.textContent='';suc.style.display='none';
+  if(!email){err.textContent='Informe um e-mail válido.';return}
+  if(pass.length<6){err.textContent='A senha deve ter pelo menos 6 caracteres.';return}
+  if(pass!==passConfirm){err.textContent='As senhas não coincidem.';return}
+  btn.disabled=true;btn.textContent='Criando conta…';
+  var{data,error}=await db.auth.signUp({
+    email:email,
+    password:pass,
+    options:{data:{role:'admin'}}
+  });
+  btn.disabled=false;btn.textContent='Criar conta';
+  if(error){
+    var msg=error.message;
+    if(msg.includes('already registered')||msg.includes('already been registered')){
+      msg='Este e-mail já está cadastrado. Tente fazer login.';
+    }
+    err.textContent=msg;
+    return;
+  }
+  if(data.session){
+    suc.style.display='block';
+    suc.textContent='Conta criada com sucesso! Entrando...';
+    setTimeout(function(){enterIfAdmin(data.user,true)},800);
+  }else{
+    suc.style.display='block';
+    suc.textContent='Conta criada! Verifique seu e-mail para confirmar o cadastro antes de entrar.';
+    setTimeout(function(){setLoginMode('login')},3000);
+  }
 };
 
 window.doLogout=async function(){
